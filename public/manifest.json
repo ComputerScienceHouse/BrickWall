@@ -1,0 +1,11 @@
+{
+  "short_name": "BrickWall",
+  "name": "CSH BrickWall",
+  "start_url": "./index.html",
+  "dir": "auto",
+  "display": "standalone",
+  "lang": "en",
+  "orientation": "portrait",
+  "theme_color": "#b0197e",
+  "background_color": "#ffffff"
+}
