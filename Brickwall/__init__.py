@@ -1,8 +1,11 @@
 from flask import Flask
-from flask_restplus import Api, Resource
+from flask_restplus import Api, Resource, fields
 
 flask_app = Flask(__name__)
-app = Api(app = flask_app)
+app = Api(app = flask_app,
+    version="0.0",
+    title= "Brickwall",
+    description="The Backend of the Brickwall webapp")
 
 name_space = app.namespace('main', description='Main APIs')
 
