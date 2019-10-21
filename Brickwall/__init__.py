@@ -1,13 +1,15 @@
 from flask import Flask
 from flask_restplus import Api, Resource, fields
+from flask_sqlalchemy import SQLAlchemy
 
 flask_app = Flask(__name__)
 app = Api(app = flask_app,
     version="0.0",
     title= "Brickwall",
     description="The Backend of the Brickwall webapp")
-
 name_space = app.namespace('main', description='Main APIs')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 
 @name_space.route('/api/v1/location/<location_id>')
 class Location(Resource):
@@ -18,12 +20,12 @@ class Location(Resource):
         print("Location put")
     def put(self):
         print("Location put")
-    def delete(self):
+    def delete(self, location_id):
         print("Location delete")
 
      
 
-@name_space.route('/api/vi/person<username>')
+@name_space.route('/api/v1/person/<username>')
 class Person(Resource):
     def get(self, username):
         return {"person": username}
