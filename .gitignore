@@ -109,3 +109,5 @@ config.py
 # Setup
 node_modules
 
+# Vscode stuff
+.vscode
