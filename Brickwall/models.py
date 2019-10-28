@@ -1,7 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Float
 from . import db
-from enum import Enum
-
 
 
 class Review(db.Model):
