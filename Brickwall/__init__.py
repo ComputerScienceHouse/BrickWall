@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 flask_app = Flask(__name__)
 app = Api(app = flask_app,
     version="0.0",
-    title= "Brickwall",
+    title= "BrickWall",
     description="The Backend of the Brickwall webapp")
 name_space = app.namespace('main', description='Main APIs')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
