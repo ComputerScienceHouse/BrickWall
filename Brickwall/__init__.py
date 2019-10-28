@@ -2,13 +2,13 @@ from flask import Flask
 from flask_restplus import Api, Resource, fields
 from flask_sqlalchemy import SQLAlchemy
 
-flask_app = Flask(__name__)
-app = Api(app = flask_app,
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+api = Api(app = app,
     version="0.0",
     title= "BrickWall",
     description="The Backend of the Brickwall webapp")
-name_space = app.namespace('main', description='Main APIs')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+name_space = api.namespace('main', description='Main APIs')
 db = SQLAlchemy(app)
 
 @name_space.route('/api/v1/location/<location_id>')
