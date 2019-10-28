@@ -1,4 +1,4 @@
-from BrickWall import app
+from Brickwall import app
 
 if __name__ == "__main__":
     app.run()
