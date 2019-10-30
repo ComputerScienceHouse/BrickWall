@@ -1,3 +1,7 @@
+"""
+Primary entry point for the app
+"""
+
 from Brickwall import app
 
 if __name__ == "__main__":
