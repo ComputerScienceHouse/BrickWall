@@ -13,14 +13,14 @@ class Review(db.Model):
     "A reference to the company that the review is about")
 
 
-class Location(db.model):
+class Location(db.Model):
     __tablename__ = "location"
     location_id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(256), nullable=False, comment="The name of the location")
     # map_location - TBD
 
 
-class Interview(db.model):
+class Interview(db.Model):
     __tablename__ = "interview"
     interview_id = Column(Integer, primary_key=True, nullable=False)
     review_id = Column(ForeignKey('review.review_id'), nullable=False)
@@ -35,14 +35,14 @@ class Interview(db.model):
     body = Column(String, nullable=True)
 
 
-class Company(db.model):
+class Company(db.Model):
     __tablename__ = "company"
     company_id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(55), nullable=False, comment="The name of the company")
     website = Column(String(256), nullable=True, comment="The companies website")
 
 
-class Offer(db.model):
+class Offer(db.Model):
     __tablename__ = "offer"
     offer_id = Column(Integer, primary_key=True, nullable=True)
     pay = Column(Float, nullable=False, comment="The amount of money the reviewer was offered")
@@ -58,7 +58,7 @@ class Offer(db.model):
     body = Column(String, nullable=True)
 
 
-class Job(db.model):
+class Job(db.Model):
     __tablename__ = "job"
     job_id = Column(Integer, primary_key=True, nullable=False)
     review_id = Column(ForeignKey('review.review_id'), nullable=False)
