@@ -4,12 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-api = Api(app = app,
+api = Api(app=app,
     version="0.0",
-    title= "BrickWall",
+    title="BrickWall",
     description="The Backend of the Brickwall webapp")
-name_space = api.namespace('main', description='Main APIs')
+name_space=api.namespace('main', description='Main APIs')
 db = SQLAlchemy(app)
+
+from Brickwall.models import Location
+
+db.create_all()
 
 @name_space.route('/api/v1/location/<location_id>')
 class Location(Resource):
