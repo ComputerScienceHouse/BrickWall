@@ -5,4 +5,4 @@ Primary entry point for the app
 from Brickwall import app
 
 if __name__ == "__main__":
-    app.run(host= app.config["IP"], port=int(app.config["PORT"]))
+    app.run(host=app.config["IP"], port=int(app.config["PORT"]))
