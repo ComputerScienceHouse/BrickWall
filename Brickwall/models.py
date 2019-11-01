@@ -12,11 +12,21 @@ class Review(db.Model):
     company_id = Column(ForeignKey('company.company_id'), nullable=False, comment = \
     "A reference to the company that the review is about")
 
+    def __init__(self, member, review_type, company_id):
+        self.member = member
+        self.type = review_type
+        self.company_id = company_id
+
+
 class Location:
     __tablename__ = "location"
     location_id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(256), nullable=False, comment = "The name of the location")
     # map_location - TBD
+
+    def __init__(self, location_name):
+        self.name = location_name
+
 
 class Interview:
     __tablename__ = "interview"
@@ -32,11 +42,23 @@ class Interview:
     # user comments about the interview
     body = Column(String, nullable=True)
 
+    def __init__(self, interview_count, coding_challenges, interview_location, body):
+        self.interview_count = interview_count
+        self.coding_challenges = coding_challenges
+        self.interview_location = interview_location
+        self.body = body
+
+
 class Company:
     __tablename__ = "company"
     company_id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(55), nullable=False, comment="The name of the company")
-    website = Column(String(256), nullable=True, comment= "The companies website")
+    website = Column(String(256), nullable=True, comment="The companies website")
+
+    def __init__(self, name, website):
+        self.name = name
+        self.website = website
+
 
 class Offer:
     __tablename__ = "offer"
@@ -51,7 +73,17 @@ class Offer:
     "takes a string, but precondition is it should take one of two strings (\"stipend\", \"corporate\", \"none\")")
     stipend = Column(Integer, nullable=False)
     # Not sure what this is for
-    body = Column(String, nullable= True)
+    body = Column(String, nullable=True)
+
+    def __init__(self, pay, pay_type, location, offer_date, offer_deadline, housing, stipend, body):
+        self.pay = pay
+        self.pay_type = pay_type
+        self.location = location
+        self.offer_date = offer_date
+        self.offer_deadline = offer_deadline
+        self.housing = housing
+        self.stipend = stipend
+        self.body = body
 
     
 class Job:
@@ -61,3 +93,8 @@ class Job:
     start_date = Column(DateTime, nullable=False)
     end_date =  Column(DateTime, nullable=False)
     body = Column(String, nullable=True)
+
+    def __init__(self, start_date, end_date, body):
+        self.start_date = start_date
+        self.end_date = end_date
+        self.body = body
