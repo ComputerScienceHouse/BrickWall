@@ -18,7 +18,7 @@ class Review(db.Model):
         self.company_id = company_id
 
 
-class Location:
+class Location(db.Model):
     __tablename__ = "location"
     location_id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(256), nullable=False, comment = "The name of the location")
@@ -28,7 +28,7 @@ class Location:
         self.name = location_name
 
 
-class Interview:
+class Interview(db.Model):
     __tablename__ = "interview"
     interview_id = Column(Integer, primary_key=True, nullable=False)
     review_id = Column(ForeignKey('review.review_id'), nullable=False) 
@@ -49,7 +49,7 @@ class Interview:
         self.body = body
 
 
-class Company:
+class Company(db.Model):
     __tablename__ = "company"
     company_id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(55), nullable=False, comment="The name of the company")
@@ -60,7 +60,7 @@ class Company:
         self.website = website
 
 
-class Offer:
+class Offer(db.Model):
     __tablename__ = "offer"
     offer_id = Column(Integer, primary_key=True, nullable=True)
     pay = Column(Float, nullable= False, comment= "The amount of money the reviewer was offered")
@@ -86,7 +86,7 @@ class Offer:
         self.body = body
 
     
-class Job:
+class Job(db.Model):
     __tablename__ = "job"
     job_id = Column(Integer, primary_key=True, nullable=False)
     review_id = Column(ForeignKey('review.review_id'), nullable=False)
