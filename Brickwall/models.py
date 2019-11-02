@@ -27,6 +27,10 @@ class Location(db.Model):
     def __init__(self, location_name):
         self.name = location_name
 
+    @classmethod
+    def by_id(cls, location_id):
+        cls.query.filter_by(location_id=location_id).first()
+
 
 class Interview(db.Model):
     __tablename__ = "interview"

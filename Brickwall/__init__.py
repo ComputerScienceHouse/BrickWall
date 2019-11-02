@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restplus import Api, Resource, fields
 from flask_sqlalchemy import SQLAlchemy
 
@@ -11,14 +11,16 @@ api = Api(app=app,
 name_space = api.namespace('main', description='Main APIs')
 db = SQLAlchemy(app)
 
+from Brickwall.models import Location, Company
+
+
 @name_space.route('/api/v1/location/<location_id>')
 class Location(Resource):
-    def get(self, location_id):
-        print("location get")
-        return {"location": location_id}
 
-    def post(self, location_id):
-        print("Location put")
+    def get(self, location_id):
+        retrieved_location = Location.location_id(location_id)
+        print(retrieved_location)
+        return {"location": location_id}
 
     def put(self):
         print("Location put")
@@ -26,7 +28,15 @@ class Location(Resource):
     def delete(self, location_id):
         print("Location delete")
 
-     
+
+@name_space.route('/api/v1/location')
+class CreateLocation(Resource):
+    def post(self):
+        req_data = request.get_json()
+        location = Location(req_data["name"])
+        db.session.add(location)
+        db.session.commit()
+
 
 @name_space.route('/api/v1/person/<username>')
 class Person(Resource):
@@ -42,7 +52,8 @@ class Company(Resource):
         return {"company_id": company_id}
 
     def post(self):
-        pass
+        req_data = request.get_json()
+        company = Company(req_data["company_name"], req_data["website"])
 
     def put(self):
         pass
