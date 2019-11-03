@@ -7,18 +7,33 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 api = Api(app=app,
     version="0.0",
     title="BrickWall",
-    description="The Backend of the Brickwall webapp")
-name_space = api.namespace('main', description='Main APIs')
+    description="The Backend of the BrickWall Web App")
+v1 = api.namespace('api/v1', description='v1 APIs')
 db = SQLAlchemy(app)
 
 from Brickwall.models import Location, Company
 
 
-@name_space.route('/api/v1/location/<location_id>')
-class Location(Resource):
+location_model = api.model('Location', {
+    'name': fields.String
+})
 
+review_model = api.model('Review', {
+    'member': fields.String,
+    'type': fields.String,
+    'company_id': fields.Integer
+})
+
+company_model = api.model('Company', {
+    'name': fields.String,
+    'website': fields.String
+})
+
+
+@v1.route('/location/<location_id>')
+class LocationRoutes(Resource):
     def get(self, location_id):
-        retrieved_location = Location.location_id(location_id)
+        retrieved_location = Location.query.filter_by(location_id=location_id).first()
         print(retrieved_location)
         return {"location": location_id}
 
@@ -29,24 +44,26 @@ class Location(Resource):
         print("Location delete")
 
 
-@name_space.route('/api/v1/location')
-class CreateLocation(Resource):
-    def post(self):
+@v1.route('/location')
+class CreateLocationRoutes(Resource):
+    # put creates, post modifies
+    @api.expect(location_model)
+    def put(self):
         req_data = request.get_json()
         location = Location(req_data["name"])
         db.session.add(location)
         db.session.commit()
 
 
-@name_space.route('/api/v1/person/<username>')
-class Person(Resource):
+@v1.route('/person/<username>')
+class PersonRoutes(Resource):
 
     def get(self, username):
         return {"person": username}
 
 
-@name_space.route('/api/v1/company/<company_id>')   
-class Company(Resource):
+@v1.route('/company/<company_id>')
+class CompanyRoutes(Resource):
 
     def get(self, company_id):
         return {"company_id": company_id}
@@ -55,15 +72,18 @@ class Company(Resource):
         req_data = request.get_json()
         company = Company(req_data["company_name"], req_data["website"])
 
-    def put(self):
-        pass
-
     def delete(self):
         pass
 
+@v1.route('/company/')
+class CreateCompanyRoutes(Resource):
+    @api.expect(company_model)
+    def put(self):
+        pass
 
-@name_space.route('/api/v1/company/<company_id>/<review_id>')
-class Review(Resource):
+
+@v1.route('/company/<company_id>/<review_id>')
+class ReviewRoutes(Resource):
 
     def get(self, company_id, review_id):
         return {"review id": review_id, "company_id": company_id}
@@ -71,8 +91,14 @@ class Review(Resource):
     def post(self):
         pass
 
+    def delete(self):
+        pass
+
+@v1.route('/company/<company_id>')
+class CreateReviewRoutes(Resource):
+    @api.expect(review_model)
     def put(self):
         pass
 
-    def delete(self):
-        pass
+
+
