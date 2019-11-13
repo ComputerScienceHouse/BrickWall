@@ -1,18 +1,28 @@
 from flask import Flask, request
 from flask_restplus import Api, Resource, fields
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+# Load default configuration and any environment variable overrides
+_root_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+app.config.from_pyfile(os.path.join(_root_dir, 'config.env.py'))
+
+# Load file based configuration overrides if present
+_pyfile_config = os.path.join(_root_dir, 'config.py')
+if os.path.exists(_pyfile_config):
+    app.config.from_pyfile(_pyfile_config)
+
 api = Api(app=app,
-    version="0.0",
-    title="BrickWall",
-    description="The Backend of the BrickWall Web App")
+          version="0.0",
+          title="BrickWall",
+          description="The Backend of the BrickWall Web App")
 v1 = api.namespace('api/v1', description='v1 APIs')
 db = SQLAlchemy(app)
 
-from Brickwall.models import Location, Company
-
+from Brickwall.models import *
+db.create_all()
 
 location_model = api.model('Location', {
     'name': fields.String
@@ -37,7 +47,7 @@ class LocationRoutes(Resource):
         print(retrieved_location)
         return {"location": location_id}
 
-    def put(self):
+    def post(self):
         print("Location put")
 
     def delete(self, location_id):
@@ -75,6 +85,7 @@ class CompanyRoutes(Resource):
     def delete(self):
         pass
 
+
 @v1.route('/company/')
 class CreateCompanyRoutes(Resource):
     @api.expect(company_model)
@@ -82,7 +93,8 @@ class CreateCompanyRoutes(Resource):
         pass
 
 
-@v1.route('/company/<company_id>/<review_id>')
+# adjusted route here because what would route be for creating a review?
+@v1.route('/company/<company_id>/review/<review_id>')
 class ReviewRoutes(Resource):
 
     def get(self, company_id, review_id):
@@ -94,11 +106,9 @@ class ReviewRoutes(Resource):
     def delete(self):
         pass
 
-@v1.route('/company/<company_id>')
+
+@v1.route('/company/<company_id>/review')
 class CreateReviewRoutes(Resource):
-    @api.expect(review_model)
+    @api.expect(company_model)
     def put(self):
         pass
-
-
-
