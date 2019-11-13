@@ -67,7 +67,7 @@ class Location(db.Model):
     def by_id(cls, id):
         """
         :param id:
-        :return: returning the object from the database based on its location_id
+        :return: returning the object from the database based on its id
         """
         return cls.query.filter_by(id=id).first()
 
@@ -78,7 +78,7 @@ class Location(db.Model):
         :return: returns the expected format of the input and output JSON
         """
         return api.model('Location', {
-            'location_id': fields.Integer(required=False),
+            'id': fields.Integer(required=False),
             'name': fields.String(required=True),
         })
 

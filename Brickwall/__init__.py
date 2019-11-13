@@ -43,15 +43,24 @@ company_model = api.model('Company', {
 @v1.route('/location/<location_id>')
 class LocationRoutes(Resource):
     def get(self, location_id):
-        retrieved_location = Location.query.filter_by(location_id=location_id).first()
-        print(retrieved_location)
-        return {"location": location_id}
+        retrieved_location = Location.query.filter_by(id=location_id).first()
+        return {
+            "id": location_id,
+            "name": retrieved_location.name
+            }
 
-    def post(self):
-        print("Location put")
+    @api.expect(location_model)
+    def post(self, location_id):
+        req_data = request.get_json()
+        retrieved_location = Location.query.filter_by(id=location_id).first()
+        retrieved_location.name = req_data["name"]
+        db.session.commit()
 
     def delete(self, location_id):
-        print("Location delete")
+        retrieved_location = Location.query.filter_by(id=location_id).first()
+        db.session.delete(retrieved_location)
+        db.session.commit()
+        return {'success': True}
 
 
 @v1.route('/location')
@@ -63,6 +72,8 @@ class CreateLocationRoutes(Resource):
         location = Location(req_data["name"])
         db.session.add(location)
         db.session.commit()
+        return {"id" : location.id, "name": location.names}
+
 
 
 @v1.route('/person/<username>')
