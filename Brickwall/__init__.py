@@ -87,21 +87,47 @@ class PersonRoutes(Resource):
 class CompanyRoutes(Resource):
 
     def get(self, company_id):
-        return {"company_id": company_id}
+        retrieved_company = Company.query.filter_by(id=company_id).first()
+        return {
+            "id": retrieved_company.id,
+            "name": retrieved_company.name,
+            "website": retrieved_company.website
+        }
 
-    def post(self):
+    @api.expect(company_model)
+    def post(self, company_id):
         req_data = request.get_json()
-        company = Company(req_data["company_name"], req_data["website"])
+        retrieved_company = Company.query.filter_by(id=company_id).first()
+        retrieved_company.name = req_data['name']
+        retrieved_company.website = req_data['website']
+        db.session.commit()
+        return {
+            "id": retrieved_company.id,
+            "name": retrieved_company.name,
+            "website": retrieved_company.website
+        }
 
-    def delete(self):
-        pass
+    def delete(self, company_id):
+        req_data = request.get_json()
+        retrieved_company = Company.query.filter_by(id=company_id).first()
+        db.session.delete(retrieved_company)
+        db.session.commit()
+        return {'success': True}
 
 
 @v1.route('/company/')
 class CreateCompanyRoutes(Resource):
     @api.expect(company_model)
     def put(self):
-        pass
+        req_data = request.get_json()
+        new_company = Company(req_data['name'], req_data['website'])
+        db.session.add(new_company)
+        db.session.commit()
+        return {
+            "id": new_company.id,
+            "name": new_company.name,
+            "website": new_company.website
+        }
 
 
 # adjusted route here because what would route be for creating a review?
