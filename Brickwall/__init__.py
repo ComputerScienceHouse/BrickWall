@@ -65,7 +65,7 @@ class LocationRoutes(Resource):
 
 @v1.route('/location')
 class CreateLocationRoutes(Resource):
-    # put creates, post modifies
+
     @api.expect(location_model)
     def put(self):
         req_data = request.get_json()
@@ -75,10 +75,8 @@ class CreateLocationRoutes(Resource):
         return {"id" : location.id, "name": location.names}
 
 
-
 @v1.route('/person/<username>')
 class PersonRoutes(Resource):
-
     def get(self, username):
         return {"person": username}
 
@@ -130,22 +128,53 @@ class CreateCompanyRoutes(Resource):
         }
 
 
-# adjusted route here because what would route be for creating a review?
-@v1.route('/company/<company_id>/review/<review_id>')
+@v1.route('/review/<review_id>')
 class ReviewRoutes(Resource):
 
     def get(self, company_id, review_id):
-        return {"review id": review_id, "company_id": company_id}
+        retrieved_review = Review.query.filter_by(id=review_id)
+        return {
+            "id": retrieved_review.id,
+            "member": retrieved_review.member,
+            "type": retrieved_review.type,
+            "company_id": retrieved_review.company_id
+        }
 
-    def post(self):
-        pass
+    @api.expect(review_model)
+    def post(self, review_id):
+        req_data = request.get_json()
+        retrieved_review = Review.query.filter_by(id=review_id).first()
+        retrieved_review.member = req_data["member"]
+        retrieved_review.type = req_data["type"]
+        retrieved_review.company_id = req_data["company_id"]
+        return {
+            "id": retrieved_review.id,
+            "member": retrieved_review.member,
+            "type": retrieved_review.type,
+            "company_id": retrieved_review.company_id
+        }
 
-    def delete(self):
-        pass
+    def delete(self, review_id):
+        retrieved_review = Review.query.filter_by(id=review_id).first()
+        db.session.delete(retrieved_review)
+        db.session.commit()
+        return {
+            "success": True
+        }
 
 
-@v1.route('/company/<company_id>/review')
+@v1.route('/review/')
 class CreateReviewRoutes(Resource):
-    @api.expect(company_model)
+
+    @api.expect(review_model)
     def put(self):
-        pass
+        req_data = request.get_json()
+        new_review = Review(req_data["member"], req_data["type"], req_data["company_id"])
+        db.session.add(new_review)
+        db.session.commit()
+        return {
+            "id": new_review.id,
+            "member": new_review.member,
+            "type": new_review.type,
+            "company_id": new_review.company_id
+        }
