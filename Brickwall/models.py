@@ -7,7 +7,7 @@ class Review(db.Model):
     __tablename__ = "review"
     id = Column(Integer, primary_key=True, nullable=False)
     member = Column(String(55), nullable=False, comment="user-name of reviewer")
-    type = Column(String(10), nullable=False, comment=
+    type = Column(String(10), nullable=False, comment=\
     """whether the person worked full time or co-op, takes a string, but precondition is it should take 
     one of two strings (\"full-time\" or \"co-op\")""")
     company_id = Column(ForeignKey('company.id'), nullable=False, comment=
@@ -95,7 +95,7 @@ class Interview(db.Model):
     review_id = Column(ForeignKey('review.id'), nullable=False)
     interview_count = Column(Integer, default=0, nullable=False, comment = \
     "The number of times the person interviewed")
-    coding_challenges = Column(Boolean, nullable=False, comment=\
+    coding_challenges = Column(Boolean, nullable=False, comment=
      "Whether there were any coding challenges during the interview")
     interview_location = Column(String(55), nullable=False, comment=\
     """whether the interview was on site or remote takes a string, but precondition is it should take one of 
@@ -216,7 +216,6 @@ class Offer(db.Model):
             'body': fields.String(required=False)
         })
 
-    
 class Job(db.Model):
     __tablename__ = "job"
     id = Column(Integer, primary_key=True, nullable=False)
