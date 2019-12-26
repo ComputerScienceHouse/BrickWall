@@ -24,21 +24,6 @@ db = SQLAlchemy(app)
 from Brickwall.models import *
 db.create_all()
 
-location_model = api.model('Location', {
-    'name': fields.String
-})
-
-review_model = api.model('Review', {
-    'member': fields.String,
-    'type': fields.String,
-    'company_id': fields.Integer
-})
-
-company_model = api.model('Company', {
-    'name': fields.String,
-    'website': fields.String
-})
-
 
 @v1.route('/location/<location_id>')
 class LocationRoutes(Resource):
@@ -49,7 +34,7 @@ class LocationRoutes(Resource):
             "name": retrieved_location.name
             }
 
-    @api.expect(location_model)
+    @api.expect(Location.get_model(api))
     def post(self, location_id):
         req_data = request.get_json()
         retrieved_location = Location.query.filter_by(id=location_id).first()
@@ -66,13 +51,13 @@ class LocationRoutes(Resource):
 @v1.route('/location')
 class CreateLocationRoutes(Resource):
 
-    @api.expect(location_model)
+    @api.expect(Location.get_model(api))
     def put(self):
         req_data = request.get_json()
         location = Location(req_data["name"])
         db.session.add(location)
         db.session.commit()
-        return {"id" : location.id, "name": location.names}
+        return {"id": location.id, "name": location.names}
 
 
 @v1.route('/person/<username>')
@@ -92,7 +77,7 @@ class CompanyRoutes(Resource):
             "website": retrieved_company.website
         }
 
-    @api.expect(company_model)
+    @api.expect(Company.get_model(api))
     def post(self, company_id):
         req_data = request.get_json()
         retrieved_company = Company.query.filter_by(id=company_id).first()
@@ -115,7 +100,7 @@ class CompanyRoutes(Resource):
 
 @v1.route('/company/')
 class CreateCompanyRoutes(Resource):
-    @api.expect(company_model)
+    @api.expect(Company.get_model(api))
     def put(self):
         req_data = request.get_json()
         new_company = Company(req_data['name'], req_data['website'])
@@ -140,7 +125,7 @@ class ReviewRoutes(Resource):
             "company_id": retrieved_review.company_id
         }
 
-    @api.expect(review_model)
+    @api.expect(Review.get_model(api))
     def post(self, review_id):
         req_data = request.get_json()
         retrieved_review = Review.query.filter_by(id=review_id).first()
@@ -166,7 +151,7 @@ class ReviewRoutes(Resource):
 @v1.route('/review/')
 class CreateReviewRoutes(Resource):
 
-    @api.expect(review_model)
+    @api.expect(Review.get_model(api))
     def put(self):
         req_data = request.get_json()
         new_review = Review(req_data["member"], req_data["type"], req_data["company_id"])
