@@ -111,3 +111,6 @@ node_modules
 
 # Vscode stuff
 .vscode
+
+# Database stuff
+*.sqlite3
