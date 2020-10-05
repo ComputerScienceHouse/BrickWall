@@ -4,7 +4,7 @@
   "description": "CSH's website for job finding purposes.",
   "main": "index.js",
   "scripts": {
-    "run": "ts-node src/server.ts",
+    "dev": "ts-node src/server.ts",
     "generate": "prisma generate",
     "migrate": "prisma migrate save --experimental && prisma migrate up --experimental",
     "prod": "prisma generate && ts-node src/server.ts",
