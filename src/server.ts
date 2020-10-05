@@ -17,10 +17,10 @@ express.post(`/company`, async (req, res) => {
 });
 
 express.get(`/company`, async (req, res) => {
-  const { city } = req.query;
+  const { headquarters } = req.query;
   const result = await prisma.company.findMany({
     include: {
-      City: city === 'true',
+      headquarters: headquarters === 'true',
     },
   });
   res.json(result);
