@@ -1,30 +1,12 @@
-import { PrismaClient } from '@prisma/client';
+import company from './routes/company';
 import createExpress from 'express';
 import * as bodyParser from 'body-parser';
 
-const prisma = new PrismaClient();
 const express = createExpress();
 
 express.use(bodyParser.json());
 
-express.post(`/company`, async (req, res) => {
-  const result = await prisma.company.create({
-    data: {
-      ...req.body,
-    },
-  });
-  res.json(result);
-});
-
-express.get(`/company`, async (req, res) => {
-  const { headquarters } = req.query;
-  const result = await prisma.company.findMany({
-    include: {
-      headquarters: headquarters === 'true',
-    },
-  });
-  res.json(result);
-});
+express.use('/company', company);
 
 express.listen(4000, () => {
   console.log(`🚀 Express server available at http://localhost:4000`);
