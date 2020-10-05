@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model City {
+  id       Int       @id @default(autoincrement())
+  city     String
+  state    String?
+  country  String
+  Companys Company[]
+  Offers   Offer[]
+}
+
+model Company {
+  id           Int         @id @default(autoincrement())
+  name         String
+  website      String?     @unique
+  headquarters Int?
+  glassdoor    String?     @unique
+  City         City?       @relation(fields: [headquarters], references: [id])
+  Interviews   Interview[]
+  JobReviews   JobReview[]
+  Offers       Offer[]
+}
+
+model Interview {
+  id              Int      @id @default(autoincrement())
+  member          String
+  companyid       Int
+  interviewcount  Int      @default(1)
+  codingchallenge Boolean? @default(false)
+  onsite          Boolean? @default(false)
+  body            String?
+  Company         Company  @relation(fields: [companyid], references: [id])
+}
+
+model JobReview {
+  id         Int       @id @default(autoincrement())
+  member     String
+  job_type   jobtype
+  companyid  Int
+  start_date DateTime
+  end_date   DateTime?
+  body       String?
+  Company    Company   @relation(fields: [companyid], references: [id])
+}
+
+model Offer {
+  id            Int       @id @default(autoincrement())
+  member        String
+  companyid     Int
+  pay           Float
+  paytype       paytype
+  offerdate     DateTime?
+  offerdeadline DateTime?
+  housing       housing?
+  stipend       Float     @default(0)
+  cityid        Int?
+  City          City?     @relation(fields: [cityid], references: [id])
+  Company       Company   @relation(fields: [companyid], references: [id])
+}
+
+enum housing {
+  corporate
+  stipend
+}
+
+enum jobtype {
+  co_op @map("co-op")
+  full_time @map("full-time")
+}
+
+enum paytype {
+  hourly
+  salary
+}
