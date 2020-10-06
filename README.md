@@ -18,7 +18,7 @@ This site is written using a [React](https://reactjs.org/) front end, with a [Ex
 
 1. `npm install`
 2. `npm run generate`
-3. `npm run dev`
+3. `npm start`
 
 The site should now serve locally at `localhost:4000`, and auto-build when you change/create files in the repo!
 
