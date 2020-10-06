@@ -22,7 +22,7 @@ const NavBar: React.FunctionComponent = () => {
       <Navbar color="primary" dark expand="lg" fixed="top">
         <Container>
           <NavLink to="/" className={'navbar-brand'}>
-            React Boilerplate
+            BrickWall
           </NavLink>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
