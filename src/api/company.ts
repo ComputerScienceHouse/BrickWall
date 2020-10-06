@@ -19,7 +19,7 @@ export const useCompanies = (
       setCompanies(res.data);
       setIsLoading(false);
     });
-  }, [headquarters]);
+  }, [headquarters, interviews, offers, reviews]);
 
   return { isLoading, companies };
 };
