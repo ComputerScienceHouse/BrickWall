@@ -1,1 +1,5 @@
-export interface City {}
+export interface City {
+  city: string;
+  state?: string;
+  country: string;
+}

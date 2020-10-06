@@ -7,7 +7,7 @@ export interface Company {
   id: number;
   name: string;
   website: string | null;
-  headquarter?: City;
+  headquarters?: City;
   Interviews?: Interview[];
   Offers?: Offer[];
   JobReviews?: JobReview[];
