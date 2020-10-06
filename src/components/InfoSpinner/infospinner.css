@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.spinner-container.centered {
+  justify-content: center;
+}
+
 .info-spinner,
 .info-spinner:after {
   width: 2em;

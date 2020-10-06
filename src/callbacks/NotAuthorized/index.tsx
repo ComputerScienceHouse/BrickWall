@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const NotAuthorized: React.FunctionComponent = () => {
   return <>Not Authorized</>;

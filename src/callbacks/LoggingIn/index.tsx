@@ -1,12 +1,12 @@
-import React from "react";
-import InfoSpinner from "../../components/InfoSpinner";
+import React from 'react';
+import InfoSpinner from '../../components/InfoSpinner';
 
-import { Jumbotron } from "reactstrap";
+import { Jumbotron } from 'reactstrap';
 
 export const LoggingIn: React.FunctionComponent = () => {
   return (
     <Jumbotron>
-      <InfoSpinner>Logging In</InfoSpinner>
+      <InfoSpinner isCentered>Logging In</InfoSpinner>
     </Jumbotron>
   );
 };
