@@ -6,8 +6,7 @@ import {
   DropdownToggle,
   Nav,
   NavItem,
-  NavLink,
-  Row
+  NavLink
 } from 'reactstrap';
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';

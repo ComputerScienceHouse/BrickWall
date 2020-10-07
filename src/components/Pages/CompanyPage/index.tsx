@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Card, CardBody, Col, Progress, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row } from 'reactstrap';
 import { useCompany } from '../../../api/company';
 import { JobType } from '../../../api/types/position';
 import { CompanySummary } from '../../CompanySummary';

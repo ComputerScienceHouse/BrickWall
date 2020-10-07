@@ -6,13 +6,10 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText,
-  CardLink,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  CardFooter,
   CardImg
 } from 'reactstrap';
 import { Company } from '../../api/types/company';
