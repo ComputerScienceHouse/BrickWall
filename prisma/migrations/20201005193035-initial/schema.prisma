@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+model City {
+  id       Int       @id @default(autoincrement())
+  city     String
+  state    String?
+  country  String
+  Companys Company[]
+  Offers   Offer[]
+}
+
+model Company {
+  id           Int         @id @default(autoincrement())
+  name         String
+  website      String?     @unique
+  headquarters City?
+  glassdoor    String?     @unique
+  Interviews   Interview[]
+  JobReviews   JobReview[]
+  Offers       Offer[]
+}
+
+model Interview {
+  id              Int      @id @default(autoincrement())
+  member          String
+  company         Company
+  interviewcount  Int      @default(1)
+  codingchallenge Boolean? @default(false)
+  onsite          Boolean? @default(false)
+  body            String?
+}
+
+model JobReview {
+  id         Int       @id @default(autoincrement())
+  member     String
+  job_type   jobtype
+  company    Company
+  start_date DateTime
+  end_date   DateTime?
+  body       String?
+}
+
+model Offer {
+  id            Int       @id @default(autoincrement())
+  member        String
+  pay           Float
+  paytype       paytype
+  offerdate     DateTime?
+  offerdeadline DateTime?
+  housing       housing?
+  stipend       Float     @default(0)
+  city          City?
+  company       Company
+}
+
+enum housing {
+  corporate
+  stipend
+}
+
+enum jobtype {
+  co_op @map("co-op")
+  full_time @map("full-time")
+}
+
+enum paytype {
+  hourly
+  salary
+}
