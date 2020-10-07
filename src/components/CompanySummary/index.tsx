@@ -1,6 +1,6 @@
+import React from 'react';
 import { faMapMarkerAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 import {
   Card,
   CardBody,
@@ -35,7 +35,7 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
       ...new Set(company.Offers?.map(offer => offer.member)),
       ...new Set(company.Interviews?.map(interview => interview.member))
     ]).size;
-  }, []);
+  }, [company]);
 
   return (
     <Card>
@@ -75,7 +75,7 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
         <CardSubtitle className={'company-subtitle'}>
           <div className={'first'}>
             {company?.website ? (
-              <a href={company?.website}>{company?.website}</a>
+              <a href={company.website}>{company?.website}</a>
             ) : (
               <>No Website :(</>
             )}

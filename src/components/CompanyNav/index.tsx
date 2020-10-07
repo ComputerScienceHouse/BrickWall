@@ -21,7 +21,6 @@ interface CompanyNavProps {
 
 export const CompanyNav: React.FunctionComponent<CompanyNavProps> = ({
   company,
-  display,
   setDisplay
 }) => {
   const [dropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
@@ -38,7 +37,7 @@ export const CompanyNav: React.FunctionComponent<CompanyNavProps> = ({
     } else if (view === 'FullTime') {
       setDisplay(JobType.FULL_TIME);
     }
-  }, [view]);
+  }, [setDisplay, view]);
 
   return (
     <div className={'navigation'}>

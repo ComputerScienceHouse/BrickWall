@@ -18,7 +18,7 @@
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.0-next.98",
     "reactstrap": "^8.6.0"
   },
   "scripts": {
@@ -30,13 +30,13 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.4",
-    "@types/react": "^16.9.0",
+    "@types/node": "^14.11.5",
+    "@types/react": "^16.9.51",
     "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.5",
+    "@types/react-router-dom": "^5.1.6",
     "@types/reactstrap": "^8.5.1",
     "node-sass": "^4.14.1",
-    "eslint": "^6.1.0",
+    "eslint": "^7.10.0",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint-config-prettier": "^6.12.0",
