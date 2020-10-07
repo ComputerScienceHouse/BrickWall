@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { withOidcSecure } from '@axa-fr/react-oidc-context';
 import { Home } from './index';
 import { CompaniesPage } from './Pages/CompaniesPage';
+import { CompanyPage } from './Pages/CompanyPage';
 import PageContainer from '../containers/PageContainer';
 
 class App extends Component {
@@ -14,8 +15,13 @@ class App extends Component {
             <Route exact path="/" component={withOidcSecure(Home)} />
             <Route
               exact
-              path="/companies"
+              path={'/companies'}
               component={withOidcSecure(CompaniesPage)}
+            />
+            <Route
+              exact
+              path={'/company/:companyId'}
+              component={withOidcSecure(CompanyPage)}
             />
           </Switch>
         </PageContainer>

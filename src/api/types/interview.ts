@@ -1,1 +1,3 @@
-export interface Interview {}
+export interface Interview {
+  member: string;
+}
