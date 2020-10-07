@@ -75,7 +75,7 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
         <CardSubtitle className={'company-subtitle'}>
           <div className={'first'}>
             {company?.website ? (
-              <a href={company.website}>{company?.website}</a>
+              <a href={company.website}>{company.website}</a>
             ) : (
               <>No Website :(</>
             )}
