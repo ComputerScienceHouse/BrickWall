@@ -10,14 +10,7 @@ router.get(`/`, async (req, res) => {
     include: {
       headquarters: headquarters === 'true',
       Interviews: interviews === 'true',
-      Offers:
-        offers === 'true'
-          ? {
-              include: {
-                position: true,
-              },
-            }
-          : false,
+      Offers: offers === 'true',
       JobReviews: reviews === 'true',
     },
   });

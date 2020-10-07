@@ -27,4 +27,15 @@ router.post(`/`, async (req, res) => {
   res.json(result);
 });
 
+router.put(`/:offerId`, async (req, res) => {
+  const { offerId } = req.params;
+  const result = await prisma.offer.update({
+    where: { id: +offerId },
+    data: {
+      ...req.body,
+    },
+  });
+  res.json(result);
+});
+
 export default router;
