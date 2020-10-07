@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN npm run generate
 
 EXPOSE 8080
-CMD [ "npm", "run", "prod" ]
+CMD [ "npm", "start" ]
