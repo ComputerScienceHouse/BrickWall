@@ -1,1 +1,3 @@
-export interface JobReview {}
+export interface JobReview {
+  member: string;
+}

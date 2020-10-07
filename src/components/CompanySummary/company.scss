@@ -1,0 +1,14 @@
+.company-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.company-subtitle {
+  display: flex;
+  justify-content: space-between;
+
+  > .first {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
