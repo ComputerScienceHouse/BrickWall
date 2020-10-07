@@ -34,7 +34,14 @@ router.get(`/:companyId`, async (req, res) => {
     include: {
       headquarters: headquarters === 'true',
       Interviews: interviews === 'true',
-      Offers: offers === 'true',
+      Offers:
+        offers === 'true'
+          ? {
+              include: {
+                position: true,
+              },
+            }
+          : false,
       JobReviews: reviews === 'true',
     },
   });

@@ -1,0 +1,27 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "EnumValue",
+          "enum": "jobtype",
+          "value": "co_op"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "EnumValue",
+          "enum": "jobtype",
+          "value": "full_time"
+        },
+        "directive": "map"
+      }
+    }
+  ]
+}
