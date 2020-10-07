@@ -17,9 +17,11 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react"],
+  "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
-    "react/jsx-uses-vars": [2]
+    "react/jsx-uses-vars": [2],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "react": {

@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import {
   Collapse,
   Container,
   Nav,
   Navbar,
   NavbarToggler,
-  NavItem,
-} from "reactstrap";
-import { NavLink } from "react-router-dom";
-import Profile from "./Profile";
+  NavItem
+} from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import Profile from './Profile';
 
 const NavBar: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -21,15 +21,20 @@ const NavBar: React.FunctionComponent = () => {
     <div>
       <Navbar color="primary" dark expand="lg" fixed="top">
         <Container>
-          <NavLink to="/" className={"navbar-brand"}>
-            React Boilerplate
+          <NavLink to="/" className={'navbar-brand'}>
+            BrickWall
           </NavLink>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink to="/" className={"nav-link"}>
+                <NavLink to="/" className={'nav-link'}>
                   Home
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/companies" className={'nav-link'}>
+                  Companies
                 </NavLink>
               </NavItem>
             </Nav>

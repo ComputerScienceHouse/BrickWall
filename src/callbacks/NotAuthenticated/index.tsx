@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 export const NotAuthenticated: React.FunctionComponent = () => {
-  return <>Not NotAuthenticated</>;
+  return <>Not Authenticated</>;
 };
 
 export default NotAuthenticated;

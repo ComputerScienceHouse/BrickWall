@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import { withOidcSecure } from "@axa-fr/react-oidc-context";
-import { Home } from "./index";
-import PageContainer from "../containers/PageContainer";
+import React, { Component } from 'react';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { withOidcSecure } from '@axa-fr/react-oidc-context';
+import { Home } from './index';
+import { CompaniesPage } from './Pages/CompaniesPage';
+import PageContainer from '../containers/PageContainer';
 
 class App extends Component {
   render() {
@@ -11,6 +12,11 @@ class App extends Component {
         <PageContainer>
           <Switch>
             <Route exact path="/" component={withOidcSecure(Home)} />
+            <Route
+              exact
+              path="/companies"
+              component={withOidcSecure(CompaniesPage)}
+            />
           </Switch>
         </PageContainer>
       </Router>
