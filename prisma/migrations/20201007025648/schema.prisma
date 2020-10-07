@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model City {
@@ -65,9 +65,7 @@ model Offer {
   offerdate     DateTime?
   offerdeadline DateTime?
   housing       housing?
-  stipend       Float?
-  signing_bonus Float?
-  relocation    Float?
+  stipend       Float     @default(0)
   city          City?
   company       Company
   body          String?

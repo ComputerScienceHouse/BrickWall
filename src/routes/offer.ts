@@ -1,0 +1,30 @@
+import { Router } from 'express';
+import { PrismaClient } from '@prisma/client';
+
+const router = Router();
+const prisma = new PrismaClient();
+
+router.get(`/:companyId`, async (req, res) => {
+  const { companyId } = req.params;
+  const { city, company } = req.query;
+  const result = await prisma.offer.findMany({
+    where: { companyId: +companyId },
+    include: {
+      position: true,
+      city: city === 'true',
+      company: company === 'true',
+    },
+  });
+  res.json(result);
+});
+
+router.post(`/`, async (req, res) => {
+  const result = await prisma.offer.create({
+    data: {
+      ...req.body,
+    },
+  });
+  res.json(result);
+});
+
+export default router;
