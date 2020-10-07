@@ -20,7 +20,7 @@ export const useCompany = (
       setCompany(res.data);
       setIsLoading(false);
     });
-  }, [headquarters, interviews, offers, reviews]);
+  }, [companyId, headquarters, interviews, offers, reviews]);
 
   return { isLoading, company };
 };
