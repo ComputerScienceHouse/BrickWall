@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
+import { ViewSection } from '../enums';
 
 import './companyNav.scss';
 
@@ -17,11 +18,15 @@ interface CompanyNavProps {
   company?: Company;
   display?: JobType;
   setDisplay: (display?: JobType) => void;
+  selection: ViewSection;
+  setSelection: (selection: ViewSection) => void;
 }
 
 export const CompanyNav: React.FunctionComponent<CompanyNavProps> = ({
   company,
-  setDisplay
+  setDisplay,
+  selection,
+  setSelection
 }) => {
   const [dropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
 
@@ -43,7 +48,11 @@ export const CompanyNav: React.FunctionComponent<CompanyNavProps> = ({
     <div className={'navigation'}>
       <Nav tabs>
         <NavItem>
-          <NavLink href="#" active>
+          <NavLink
+            href="#"
+            active={selection === ViewSection.REVIEWS}
+            onClick={() => setSelection(ViewSection.REVIEWS)}
+          >
             <>
               <div className={'count'}>{company?.JobReviews?.length}</div>
               <div>Reviews</div>
@@ -51,7 +60,11 @@ export const CompanyNav: React.FunctionComponent<CompanyNavProps> = ({
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">
+          <NavLink
+            href="#"
+            active={selection === ViewSection.OFFERS}
+            onClick={() => setSelection(ViewSection.OFFERS)}
+          >
             <>
               <div className={'count'}>{company?.Offers?.length}</div>
               <div>Offers</div>
@@ -59,7 +72,11 @@ export const CompanyNav: React.FunctionComponent<CompanyNavProps> = ({
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">
+          <NavLink
+            href="#"
+            active={selection === ViewSection.INTERVIEWS}
+            onClick={() => setSelection(ViewSection.INTERVIEWS)}
+          >
             <>
               <div className={'count'}>{company?.Interviews?.length}</div>
               <div>Interviews</div>

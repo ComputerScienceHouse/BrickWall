@@ -2,6 +2,7 @@ import React from 'react';
 import { Progress } from 'reactstrap';
 import { Offer, PayType } from '../../api/types/offer';
 import { JobType } from '../../api/types/position';
+import { formatMoney } from '../utils';
 
 interface SalaryBarProps {
   offers: Offer[];
@@ -29,7 +30,7 @@ export const SalaryBar: React.FunctionComponent<SalaryBarProps> = ({
 
   return (
     <div>
-      <b>${avgSalary.toFixed(2)}</b> (${(avgSalary / 52 / 40).toFixed(2)}/hr)
+      <b>{formatMoney(avgSalary)}</b> ({formatMoney(avgSalary / 52 / 40)}/hr)
       <Progress
         value={avgSalary}
         min={Math.min(...salaries)}
