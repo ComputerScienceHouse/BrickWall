@@ -17,15 +17,20 @@ import { JobType } from '../../api/types/position';
 import { CompanyNav } from '../CompanyNav';
 
 import './company.scss';
+import { ViewSection } from '../enums';
 
 interface CompanySummaryProps {
   company: Company;
   setDisplay: (display?: JobType) => void;
+  selection: ViewSection;
+  setSelection: (selection: ViewSection) => void;
 }
 
 export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
   company,
-  setDisplay
+  setDisplay,
+  selection,
+  setSelection
 }) => {
   const [contributeToggle, setContributeToggle] = React.useState<boolean>();
 
@@ -97,7 +102,12 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
           </div>
         </CardSubtitle>
       </CardBody>
-      <CompanyNav company={company} setDisplay={setDisplay} />
+      <CompanyNav
+        company={company}
+        setDisplay={setDisplay}
+        selection={selection}
+        setSelection={setSelection}
+      />
     </Card>
   );
 };
