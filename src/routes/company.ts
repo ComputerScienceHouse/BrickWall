@@ -39,6 +39,7 @@ router.get(`/:companyId`, async (req, res) => {
           ? {
               include: {
                 position: true,
+                location: true,
               },
             }
           : false,

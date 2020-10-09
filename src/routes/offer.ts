@@ -6,12 +6,12 @@ const prisma = new PrismaClient();
 
 router.get(`/:companyId`, async (req, res) => {
   const { companyId } = req.params;
-  const { city, company } = req.query;
+  const { location, company } = req.query;
   const result = await prisma.offer.findMany({
     where: { companyId: +companyId },
     include: {
       position: true,
-      city: city === 'true',
+      location: location === 'true',
       company: company === 'true',
     },
   });
