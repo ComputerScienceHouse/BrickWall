@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model City {
@@ -20,7 +20,6 @@ model Company {
   id           Int         @id @default(autoincrement())
   name         String      @unique
   website      String      @unique
-  logo         String?     @unique
   headquarters City?
   glassdoor    String?     @unique
   Interviews   Interview[]
