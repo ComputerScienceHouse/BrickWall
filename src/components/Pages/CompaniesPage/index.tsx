@@ -5,9 +5,13 @@ import InfoSpinner from '../../InfoSpinner';
 import { ViewSelector } from '../../ViewSelector';
 import { MenuBar } from '../../MenuBar';
 import { CompanyCard } from '../../CompanyCard';
+import { CreateCompanyModal } from '../../CreateCompanyModal';
+import useToggle from 'react-use/lib/useToggle';
 
 export const CompaniesPage: React.FunctionComponent = () => {
   const { companies, isLoading } = useCompanies(true, true, true, true);
+
+  const [isCreateCompanyOpen, toggleCreateCompanyModal] = useToggle(false);
 
   const companyList = companies?.map(company => {
     return (
@@ -38,7 +42,13 @@ export const CompaniesPage: React.FunctionComponent = () => {
       <Row xs={'1'}>
         <p style={{ textAlign: 'center', flex: 'auto' }}>
           Don't see the company you're looking for?{' '}
-          <Button color="link">Add it!</Button>
+          <Button color="link" onClick={toggleCreateCompanyModal}>
+            Add it!
+          </Button>
+          <CreateCompanyModal
+            isOpen={isCreateCompanyOpen}
+            toggle={toggleCreateCompanyModal}
+          />
         </p>
       </Row>
     </div>

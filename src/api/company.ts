@@ -1,5 +1,5 @@
 import React from 'react';
-import { Company } from './types/company';
+import { Company, CreateCompany } from './types/company';
 import v1 from '.';
 
 export const useCompany = (
@@ -45,4 +45,21 @@ export const useCompanies = (
   }, [headquarters, interviews, offers, reviews]);
 
   return { isLoading, companies };
+};
+
+export const useCreateCompany = (newCompany?: CreateCompany) => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [result, setResult] = React.useState();
+
+  React.useEffect(() => {
+    if (newCompany !== undefined) {
+      setIsLoading(true);
+      v1.post('/company', newCompany).then(res => {
+        setResult(res.data);
+        setIsLoading(false);
+      });
+    }
+  }, [newCompany]);
+
+  return { isLoading, result };
 };
