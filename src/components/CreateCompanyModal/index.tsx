@@ -51,7 +51,10 @@ export const CreateCompanyModal: React.FunctionComponent<CreateCompanyModalProps
           : {
               create: {
                 city: createCompanyCity,
-                state: createCompanyState,
+                state:
+                  createCompanyCountry === 'United States'
+                    ? createCompanyState
+                    : undefined,
                 country: createCompanyCountry
               }
             }
@@ -98,6 +101,12 @@ export const CreateCompanyModal: React.FunctionComponent<CreateCompanyModalProps
             <CitySelector
               name={'companyHeadquarters'}
               onChange={onCitySelect}
+              newCity={createCompanyCity}
+              setNewCity={setCreateCompanyCity}
+              newState={createCompanyState}
+              setNewState={setCreateCompanyState}
+              newCountry={createCompanyCountry}
+              setNewCountry={setCreateCompanyCountry}
             />
           </FormGroup>
         </Form>
@@ -106,7 +115,7 @@ export const CreateCompanyModal: React.FunctionComponent<CreateCompanyModalProps
         <Button
           color="primary"
           onClick={createNewCompany}
-          disabled={companyName !== '' && companyWebsite !== ''}
+          disabled={companyName === '' || companyWebsite === ''}
         >
           Create
         </Button>{' '}

@@ -42,13 +42,13 @@ export const CompanyCard: React.FunctionComponent<CompanyCardProps> = ({
           alt={`${company.name}'s Logo`}
           style={{
             width: '100%',
-            height: '15vw',
+            height: '10vw',
             objectFit: 'cover'
           }}
         />
         <CardBody>
           <CardTitle>{company.name}</CardTitle>
-          <CardSubtitle>
+          <CardSubtitle style={{ fontSize: '11px' }}>
             {company.headquarters ? (
               <>
                 <FontAwesomeIcon icon={faMapMarkerAlt} />

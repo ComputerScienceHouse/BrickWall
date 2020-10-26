@@ -1,10 +1,19 @@
+import { useReactOidc } from '@axa-fr/react-oidc-context';
 import {
   faMapMarkerAlt,
   faLaptopHouse
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Card, CardBody, CardSubtitle, CardTitle, Table } from 'reactstrap';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardSubtitle,
+  CardTitle,
+  Table
+} from 'reactstrap';
 import { Offer, PayType } from '../../api/types/offer';
 import { formatMoney } from '../utils';
 
@@ -15,6 +24,12 @@ interface OfferProps {
 }
 
 export const OfferItem: React.FunctionComponent<OfferProps> = ({ offer }) => {
+  const { oidcUser } = useReactOidc();
+
+  const {
+    profile: { preferred_username }
+  } = oidcUser ?? { profile: {} };
+
   return (
     <Card style={{ marginBottom: '1.5vh' }}>
       <CardBody>
@@ -117,6 +132,40 @@ export const OfferItem: React.FunctionComponent<OfferProps> = ({ offer }) => {
         </Table>
         {offer.body}
       </CardBody>
+      <CardFooter>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <div>
+            {preferred_username === offer.member && (
+              <Button color="link" size={'sm'}>
+                Edit
+              </Button>
+            )}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <img
+              className="rounded-circle"
+              src={`https://profiles.csh.rit.edu/image/${offer.member}`}
+              alt=""
+              aria-hidden={true}
+              width={24}
+              height={24}
+            />
+            &nbsp;
+            {offer.member}
+          </div>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

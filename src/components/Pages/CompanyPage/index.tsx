@@ -60,10 +60,15 @@ export const CompanyPage: React.FunctionComponent = () => {
             </Col>
             <Col sm={4} className={'d-none d-sm-block'}>
               {company.Offers ? (
-                <Card>
+                <Card style={{ marginBottom: '1.5vh' }}>
                   <CardBody>
                     <SalaryBar offers={company.Offers} display={display} />
                   </CardBody>
+                </Card>
+              ) : undefined}
+              {company.Offers ? (
+                <Card>
+                  <CardBody>Average offer expiration</CardBody>
                 </Card>
               ) : undefined}
             </Col>

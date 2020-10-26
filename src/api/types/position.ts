@@ -1,4 +1,5 @@
-import { Company } from './company';
+import { Connect, Create } from '..';
+import { Company, CreateCompany } from './company';
 
 export enum JobType {
   CO_OP = 'co_op',
@@ -8,6 +9,12 @@ export enum JobType {
 export interface Position {
   id: number;
   company: Company;
+  title: string;
+  job_type: JobType;
+}
+
+export interface CreatePosition {
+  company: Connect | Create<CreateCompany>;
   title: string;
   job_type: JobType;
 }

@@ -15,9 +15,11 @@ import {
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
 import { CompanyNav } from '../CompanyNav';
+import { CreateOfferModal } from '../CreateOfferModal';
 
 import './company.scss';
 import { ViewSection } from '../enums';
+import { useToggle } from 'react-use';
 
 interface CompanySummaryProps {
   company: Company;
@@ -42,6 +44,8 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
     ]).size;
   }, [company]);
 
+  const [createOfferOpen, toggleCreateOfferOpen] = useToggle(false);
+
   return (
     <Card>
       <CardImg
@@ -55,7 +59,7 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
         alt={`${company?.name}'s Logo`}
         style={{
           width: '100%',
-          height: '15vw',
+          height: '25vw',
           objectFit: 'cover'
         }}
       />
@@ -75,10 +79,17 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>Interview</DropdownItem>
-                <DropdownItem>Offer</DropdownItem>
+                <DropdownItem onClick={toggleCreateOfferOpen}>
+                  Offer
+                </DropdownItem>
                 <DropdownItem>Review</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
+            <CreateOfferModal
+              isOpen={createOfferOpen}
+              toggle={toggleCreateOfferOpen}
+              company={company}
+            />
           </div>
         </CardTitle>
         <CardSubtitle className={'company-subtitle'}>
