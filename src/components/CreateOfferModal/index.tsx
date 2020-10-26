@@ -14,7 +14,6 @@ import {
 } from 'reactstrap';
 import { useReactOidc } from '@axa-fr/react-oidc-context';
 import { CreateOffer, Housing, PayType } from '../../api/types/offer';
-import Select from 'react-select';
 import { CitySelector } from '../CitySelector';
 import { PositionSelector } from '../PositionSelector';
 import { useCreateOffer } from '../../api/offer';
@@ -61,8 +60,6 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
   const [offerLocationCountry, setOfferLocationCountry] = React.useState<
     string
   >('United States');
-
-  type SelectVal = { value: PayType; label: string };
 
   const { oidcUser } = useReactOidc();
   useCreateOffer(newOffer);
@@ -116,11 +113,6 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
     setOfferPositionId(value);
   };
 
-  const payTypes: SelectVal[] = [
-    { label: 'Salary', value: PayType.SALARY },
-    { label: 'Hourly', value: PayType.HOURLY }
-  ];
-
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={toggle}>Create Offer</ModalHeader>
@@ -157,16 +149,24 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
                 onChange={event => setPay(parseFloat(event.target.value))}
                 required
               />
+              <Input
+                type="select"
+                name="offerPayType"
+                id="offerPayType"
+                value={payType}
+                style={{ maxWidth: '100px' }}
+                onChange={event => {
+                  setPayType(
+                    event.target.value === PayType.SALARY
+                      ? PayType.SALARY
+                      : PayType.HOURLY
+                  );
+                }}
+              >
+                <option value={PayType.SALARY}>Salary</option>
+                <option value={PayType.HOURLY}>Hourly</option>
+              </Input>
             </InputGroup>
-          </FormGroup>
-          <FormGroup>
-            <Label for="offerPayType">Pay Type</Label>
-            <Select
-              name={'offerPayType'}
-              options={payTypes}
-              defaultValue={{ label: 'Salary', value: payType }}
-              onChange={value => setPayType((value as SelectVal).value)}
-            />
           </FormGroup>
           <FormGroup>
             <Label for="offerLocation">Offer Location</Label>
@@ -267,22 +267,19 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
               id="offerHousing"
               value={housing}
               defaultValue={undefined}
+              onChange={event => {
+                setHousing(
+                  event.target.value === Housing.CORPORATE
+                    ? Housing.CORPORATE
+                    : event.target.value === Housing.STIPEND
+                    ? Housing.STIPEND
+                    : undefined
+                );
+              }}
             >
-              <option value={undefined} onSelect={() => setHousing(undefined)}>
-                None
-              </option>
-              <option
-                value={Housing.CORPORATE}
-                onSelect={() => setHousing(Housing.CORPORATE)}
-              >
-                Corporate Housing
-              </option>
-              <option
-                value={Housing.STIPEND}
-                onSelect={() => setHousing(Housing.STIPEND)}
-              >
-                Housing Stipend
-              </option>
+              <option value={undefined}>None</option>
+              <option value={Housing.CORPORATE}>Corporate Housing</option>
+              <option value={Housing.STIPEND}>Housing Stipend</option>
             </Input>
           </FormGroup>
           <FormGroup>

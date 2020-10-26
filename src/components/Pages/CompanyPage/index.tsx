@@ -7,9 +7,9 @@ import { CompanySummary } from '../../CompanySummary';
 import InfoSpinner from '../../InfoSpinner';
 import { SalaryBar } from '../../SalaryBar';
 import { ViewSection } from '../../enums';
-import { OfferItem } from '../../OfferItem';
-import { ReviewItem } from '../../ReviewItem';
-import { InterviewItem } from '../../InterviewItem';
+import { OfferItem } from '../../CompanyItems/OfferItem';
+import { ReviewItem } from '../../CompanyItems/ReviewItem';
+import { InterviewItem } from '../../CompanyItems/InterviewItem';
 
 interface RouteParams {
   companyId: string;

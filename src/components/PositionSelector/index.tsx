@@ -74,20 +74,16 @@ export const PositionSelector: React.FunctionComponent<PositionSelectorProps> = 
           name={'newPositionTypeSelector'}
           id={'newPositionTypeSelector'}
           value={newPositionType}
-          defaultValue={newPositionType ?? JobType.CO_OP}
+          onChange={event => {
+            setNewPositionType(
+              event.target.value === JobType.CO_OP
+                ? JobType.CO_OP
+                : JobType.FULL_TIME
+            );
+          }}
         >
-          <option
-            value={JobType.CO_OP}
-            onSelect={() => setNewPositionType(JobType.CO_OP)}
-          >
-            Co-Op/Internship
-          </option>
-          <option
-            value={JobType.FULL_TIME}
-            onSelect={() => setNewPositionType(JobType.FULL_TIME)}
-          >
-            FullTime
-          </option>
+          <option value={JobType.CO_OP}>Co-Op/Internship</option>
+          <option value={JobType.FULL_TIME}>FullTime</option>
         </Input>
       </InputGroup>
     );
