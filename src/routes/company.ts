@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { uploadS3 } from '../s3';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -58,6 +59,25 @@ router.put(`/:companyId`, async (req, res) => {
     },
   });
   res.json(result);
+});
+
+router.delete(`/:companyId`, async (req, res) => {
+  const { companyId } = req.params;
+  const result = await prisma.company.delete({
+    where: { id: +companyId },
+  });
+  res.json(result);
+});
+
+router.post(`/upload/:companyId`, uploadS3.single('file'), async (req, res) => {
+  const { companyId } = req.params;
+  await prisma.company.update({
+    where: { id: +companyId },
+    data: {
+      logo: req.file.originalname,
+    },
+  });
+  res.json(req.file);
 });
 
 export default router;
