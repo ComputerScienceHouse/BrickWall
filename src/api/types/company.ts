@@ -3,7 +3,7 @@ import { City, CreateCity } from './city';
 import { Interview } from './interview';
 import { JobReview } from './jobReview';
 import { Offer } from './offer';
-import { Position } from './position';
+import { JobPosition } from './position';
 
 export interface Company {
   id: number;
@@ -14,7 +14,7 @@ export interface Company {
   Interviews?: Interview[];
   Offers?: Offer[];
   JobReviews?: JobReview[];
-  Positions?: Position[];
+  Positions?: JobPosition[];
 }
 
 export interface CreateCompany {

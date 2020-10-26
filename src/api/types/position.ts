@@ -6,7 +6,7 @@ export enum JobType {
   FULL_TIME = 'full_time'
 }
 
-export interface Position {
+export interface JobPosition {
   id: number;
   company: Company;
   title: string;

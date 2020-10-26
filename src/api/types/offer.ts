@@ -1,7 +1,7 @@
 import { Connect, Create } from '..';
 import { City, CreateCity } from './city';
 import { Company, CreateCompany } from './company';
-import { CreatePosition, Position } from './position';
+import { CreatePosition, JobPosition } from './position';
 
 export enum PayType {
   HOURLY = 'hourly',
@@ -18,7 +18,7 @@ export interface Offer {
   member: string;
   pay: number;
   paytype: PayType;
-  position: Position;
+  position: JobPosition;
   offerdate: string | null;
   offerdeadline: string | null;
   housing: Housing;

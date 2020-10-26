@@ -1,10 +1,10 @@
 import React from 'react';
-import { Position } from './types/position';
+import { JobPosition } from './types/position';
 import v1 from '.';
 
 export const usePositions = (companyId: number) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [positions, setPositions] = React.useState<Position[]>([]);
+  const [positions, setPositions] = React.useState<JobPosition[]>([]);
 
   React.useEffect(() => {
     setIsLoading(true);

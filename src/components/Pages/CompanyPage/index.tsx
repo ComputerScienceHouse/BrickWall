@@ -8,6 +8,8 @@ import InfoSpinner from '../../InfoSpinner';
 import { SalaryBar } from '../../SalaryBar';
 import { ViewSection } from '../../enums';
 import { OfferItem } from '../../OfferItem';
+import { ReviewItem } from '../../ReviewItem';
+import { InterviewItem } from '../../InterviewItem';
 
 interface RouteParams {
   companyId: string;
@@ -23,11 +25,18 @@ export const CompanyPage: React.FunctionComponent = () => {
   );
 
   const mainView: { [key in ViewSection]: React.ReactNode } = {
-    [ViewSection.REVIEWS]: <>Reviews</>,
+    [ViewSection.REVIEWS]: company?.JobReviews?.filter(
+      review => review.position.job_type === display || display === undefined
+    ).map(review => <ReviewItem key={review.id} review={review} />),
     [ViewSection.OFFERS]: company?.Offers?.filter(
       offer => offer.position.job_type === display || display === undefined
     ).map(offer => <OfferItem key={offer.id} offer={offer} />),
-    [ViewSection.INTERVIEWS]: <>Interviews</>
+    [ViewSection.INTERVIEWS]: company?.Interviews?.filter(
+      interview =>
+        interview.position.job_type === display || display === undefined
+    ).map(interview => (
+      <InterviewItem key={interview.id} interview={interview} />
+    ))
   };
 
   return (
