@@ -16,6 +16,7 @@ import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
 import { CompanyNav } from '../CompanyNav';
 import { CreateOfferModal } from '../CreateOfferModal';
+import { CreateInterviewModal } from '../CreateInterviewModal';
 
 import './company.scss';
 import { ViewSection } from '../enums';
@@ -45,6 +46,7 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
   }, [company]);
 
   const [createOfferOpen, toggleCreateOfferOpen] = useToggle(false);
+  const [createInterviewOpen, toggleCreateInterviewOpen] = useToggle(false);
 
   return (
     <Card>
@@ -78,13 +80,20 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
                 &nbsp; Contribute
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Interview</DropdownItem>
+                <DropdownItem onClick={toggleCreateInterviewOpen}>
+                  Interview
+                </DropdownItem>
                 <DropdownItem onClick={toggleCreateOfferOpen}>
                   Offer
                 </DropdownItem>
                 <DropdownItem>Review</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
+            <CreateInterviewModal
+              isOpen={createInterviewOpen}
+              toggle={toggleCreateInterviewOpen}
+              company={company}
+            />
             <CreateOfferModal
               isOpen={createOfferOpen}
               toggle={toggleCreateOfferOpen}

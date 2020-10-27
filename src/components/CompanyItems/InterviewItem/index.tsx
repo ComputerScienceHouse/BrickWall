@@ -16,6 +16,7 @@ export const InterviewItem: React.FunctionComponent<InterviewItemProps> = ({
         <CardTitle>
           <h3>{interview.position.title}</h3>
         </CardTitle>
+        {interview.body}
       </CardBody>
       <ItemFooter item={interview} />
     </Card>
