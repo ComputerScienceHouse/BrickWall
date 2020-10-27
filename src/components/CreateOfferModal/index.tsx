@@ -19,6 +19,9 @@ import { PositionSelector } from '../PositionSelector';
 import { useCreateOffer } from '../../api/offer';
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
+import { PayInput } from './PayInput';
+import { StipendInput } from './StipendInput';
+import { HousingInput } from './HousingInput';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -41,6 +44,8 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
   const [housing, setHousing] = React.useState<Housing>();
   const [offerDate, setOfferDate] = React.useState<Date>();
   const [offerDeadline, setOfferDeadline] = React.useState<Date>();
+  const [remote, setRemote] = React.useState<boolean>(false);
+  const [body, setBody] = React.useState<string>();
 
   const [offerPositionId, setOfferPositionId] = React.useState<number>();
   const [offerPositionTitle, setOfferPositionTitle] = React.useState<string>(
@@ -91,15 +96,28 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
         paytype: payType,
         company: { connect: { id: company.id } },
         position: offerPosition,
-        location: offerLocationId
-          ? { connect: { id: offerLocationId } }
+        location: !remote
+          ? offerLocationId
+            ? { connect: { id: offerLocationId } }
+            : {
+                create: {
+                  city: offerLocationCity,
+                  state:
+                    offerLocationCountry === 'United States'
+                      ? offerLocationState
+                      : undefined,
+                  country: offerLocationCountry
+                }
+              }
           : undefined,
+        remote: remote,
         offerdate: offerDate,
         offerdeadline: offerDeadline,
         stipend: stipend && stipend >= 0 ? stipend : undefined,
         stocks: stocks && stocks >= 0 ? stocks : undefined,
         relocation: relocation && relocation >= 0 ? relocation : undefined,
-        housing: housing
+        housing: housing,
+        body: body
       });
       toggle();
     }
@@ -130,44 +148,12 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
               setNewPositionType={setOfferPositionType}
             />
           </FormGroup>
-          <FormGroup>
-            <Label for="offerAmount">Pay</Label>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input
-                type={'number'}
-                name={'offerAmount'}
-                id={'offerAmount'}
-                placeholder={
-                  payType === PayType.SALARY
-                    ? `Example: 75000 ($75,000 a year salary)`
-                    : `Example: 31 ($31 an hour pay)`
-                }
-                min={0}
-                value={pay}
-                invalid={pay ? pay <= 0 : undefined}
-                onChange={event => setPay(parseFloat(event.target.value))}
-                required
-              />
-              <Input
-                type="select"
-                name="offerPayType"
-                id="offerPayType"
-                value={payType}
-                style={{ maxWidth: '100px' }}
-                onChange={event => {
-                  setPayType(
-                    event.target.value === PayType.SALARY
-                      ? PayType.SALARY
-                      : PayType.HOURLY
-                  );
-                }}
-              >
-                <option value={PayType.SALARY}>Salary</option>
-                <option value={PayType.HOURLY}>Hourly</option>
-              </Input>
-            </InputGroup>
-          </FormGroup>
+          <PayInput
+            pay={pay}
+            setPay={setPay}
+            payType={payType}
+            setPayType={setPayType}
+          />
           <FormGroup>
             <Label for="offerLocation">Offer Location</Label>
             <CitySelector
@@ -179,6 +165,8 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
               setNewState={setOfferLocationState}
               newCountry={offerLocationCountry}
               setNewCountry={setOfferLocationCountry}
+              remote={remote}
+              setRemote={setRemote}
             />
           </FormGroup>
           <FormGroup>
@@ -259,51 +247,21 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
               />
             </InputGroup>
           </FormGroup>
+          <HousingInput housing={housing} setHousing={setHousing} />
+          <StipendInput
+            stipend={stipend}
+            setStipend={setStipend}
+            housing={housing}
+          />
           <FormGroup>
-            <Label for="offerHousing">Housing</Label>
+            <Label for="offerBody">Details</Label>
             <Input
-              type="select"
-              name="offerHousing"
-              id="offerHousing"
-              value={housing}
-              defaultValue={undefined}
-              onChange={event => {
-                setHousing(
-                  event.target.value === Housing.CORPORATE
-                    ? Housing.CORPORATE
-                    : event.target.value === Housing.STIPEND
-                    ? Housing.STIPEND
-                    : undefined
-                );
-              }}
-            >
-              <option value={undefined}>None</option>
-              <option value={Housing.CORPORATE}>Corporate Housing</option>
-              <option value={Housing.STIPEND}>Housing Stipend</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="offerStipend">Stipend</Label>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input
-                type={'number'}
-                name={'offerStipend'}
-                id={'offerStipend'}
-                placeholder={`Example: 1000 ($1,000 a month stipend)`}
-                min={0}
-                value={stipend}
-                invalid={
-                  stipend
-                    ? stipend <= 0
-                    : housing === Housing.STIPEND
-                    ? stipend === undefined
-                    : undefined
-                }
-                onChange={event => setStipend(parseFloat(event.target.value))}
-                required={housing === Housing.STIPEND}
-              />
-            </InputGroup>
+              type="textarea"
+              name="offerBody"
+              id="offerBody"
+              value={body}
+              onChange={event => setBody(event.target.value)}
+            />
           </FormGroup>
         </Form>
       </ModalBody>

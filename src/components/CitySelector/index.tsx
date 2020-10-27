@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import { useToggle } from 'react-use';
-import { Button, Input, InputGroup } from 'reactstrap';
+import { Button, FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import { useCities } from '../../api/city';
 
 type SelectVal = { value: number; label: string };
@@ -15,6 +15,8 @@ interface CitySelectorProps {
   setNewState?: (newState: string) => void;
   newCountry?: string;
   setNewCountry?: (newCountry: string) => void;
+  remote?: boolean;
+  setRemote?: (remote: boolean) => void;
 }
 
 export const CitySelector: React.FunctionComponent<CitySelectorProps> = ({
@@ -25,7 +27,9 @@ export const CitySelector: React.FunctionComponent<CitySelectorProps> = ({
   newState,
   setNewState,
   newCountry,
-  setNewCountry
+  setNewCountry,
+  remote,
+  setRemote
 }) => {
   const { cities, isLoading } = useCities();
   const [createCity, toggleCreateCity] = useToggle(cities.length == 0);
@@ -49,12 +53,28 @@ export const CitySelector: React.FunctionComponent<CitySelectorProps> = ({
           options={cityOptions}
           isLoading={isLoading}
           onChange={value => onChange(value as SelectVal)}
+          isDisabled={remote}
         />
         <p style={{ textAlign: 'center', flex: 'auto' }}>
           Don't see the city you're looking for?{' '}
           <Button color="link" onClick={toggleCreateCity} size={'sm'}>
             Add it!
           </Button>
+          {setRemote && (
+            <>
+              or&nbsp;&nbsp;&nbsp;
+              <FormGroup check inline>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    checked={remote}
+                    onChange={() => setRemote(!remote)}
+                  />
+                  Remote
+                </Label>
+              </FormGroup>
+            </>
+          )}
         </p>
       </>
     );
