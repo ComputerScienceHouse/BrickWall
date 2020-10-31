@@ -15,9 +15,12 @@ import {
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
 import { CompanyNav } from '../CompanyNav';
+import { CreateOfferModal } from '../CreateOfferModal';
+import { CreateInterviewModal } from '../CreateInterviewModal';
 
 import './company.scss';
 import { ViewSection } from '../enums';
+import { useToggle } from 'react-use';
 
 interface CompanySummaryProps {
   company: Company;
@@ -42,16 +45,23 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
     ]).size;
   }, [company]);
 
+  const [createOfferOpen, toggleCreateOfferOpen] = useToggle(false);
+  const [createInterviewOpen, toggleCreateInterviewOpen] = useToggle(false);
+
   return (
     <Card>
       <CardImg
         top
         height={'100px'}
-        src="https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+        src={
+          company.logo
+            ? `https://assets.csh.rit.edu/brickwall/${company.logo}`
+            : 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
+        }
         alt={`${company?.name}'s Logo`}
         style={{
           width: '100%',
-          height: '15vw',
+          height: '25vw',
           objectFit: 'cover'
         }}
       />
@@ -70,11 +80,25 @@ export const CompanySummary: React.FunctionComponent<CompanySummaryProps> = ({
                 &nbsp; Contribute
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Interview</DropdownItem>
-                <DropdownItem>Offer</DropdownItem>
+                <DropdownItem onClick={toggleCreateInterviewOpen}>
+                  Interview
+                </DropdownItem>
+                <DropdownItem onClick={toggleCreateOfferOpen}>
+                  Offer
+                </DropdownItem>
                 <DropdownItem>Review</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
+            <CreateInterviewModal
+              isOpen={createInterviewOpen}
+              toggle={toggleCreateInterviewOpen}
+              company={company}
+            />
+            <CreateOfferModal
+              isOpen={createOfferOpen}
+              toggle={toggleCreateOfferOpen}
+              company={company}
+            />
           </div>
         </CardTitle>
         <CardSubtitle className={'company-subtitle'}>

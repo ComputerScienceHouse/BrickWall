@@ -34,17 +34,21 @@ export const CompanyCard: React.FunctionComponent<CompanyCardProps> = ({
         <CardImg
           top
           height={'100px'}
-          src="https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+          src={
+            company.logo
+              ? `https://assets.csh.rit.edu/brickwall/${company.logo}`
+              : 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
+          }
           alt={`${company.name}'s Logo`}
           style={{
             width: '100%',
-            height: '15vw',
+            height: '10vw',
             objectFit: 'cover'
           }}
         />
         <CardBody>
           <CardTitle>{company.name}</CardTitle>
-          <CardSubtitle>
+          <CardSubtitle style={{ fontSize: '11px' }}>
             {company.headquarters ? (
               <>
                 <FontAwesomeIcon icon={faMapMarkerAlt} />

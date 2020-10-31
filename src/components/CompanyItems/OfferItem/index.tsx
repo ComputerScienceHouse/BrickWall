@@ -5,8 +5,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Card, CardBody, CardSubtitle, CardTitle, Table } from 'reactstrap';
-import { Offer, PayType } from '../../api/types/offer';
-import { formatMoney } from '../utils';
+import { Offer, PayType } from '../../../api/types/offer';
+import { formatMoney } from '../../utils';
+import { ItemFooter } from '../ItemFooter';
 
 import './offerItem.scss';
 
@@ -117,6 +118,7 @@ export const OfferItem: React.FunctionComponent<OfferProps> = ({ offer }) => {
         </Table>
         {offer.body}
       </CardBody>
+      <ItemFooter item={offer} />
     </Card>
   );
 };
