@@ -28,7 +28,7 @@ export interface Offer {
   signing_bonus: number | null;
   location: City | null;
   remote: boolean;
-  company?: Company;
+  company: Company;
   body: string | null;
 }
 
@@ -47,5 +47,23 @@ export interface CreateOffer {
   location?: Connect | Create<CreateCity>;
   remote?: boolean;
   company: Connect | Create<CreateCompany>;
+  body?: string;
+}
+
+export interface UpdateOffer {
+  member?: string;
+  pay?: number;
+  paytype?: PayType;
+  position?: Connect | Create<CreatePosition>;
+  offerdate?: Date;
+  offerdeadline?: Date;
+  housing?: Housing;
+  stipend?: number;
+  stocks?: number;
+  relocation?: number;
+  signing_bonus?: number;
+  location?: Connect | Create<CreateCity>;
+  remote?: boolean;
+  company?: Connect | Create<CreateCompany>;
   body?: string;
 }

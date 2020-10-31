@@ -15,7 +15,7 @@ import {
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
 import { CompanyNav } from '../CompanyNav';
-import { CreateOfferModal } from '../CreateOfferModal';
+import { CreateOfferModal } from '../OfferModal/CreateOfferModal';
 import { CreateInterviewModal } from '../CreateInterviewModal';
 
 import './company.scss';

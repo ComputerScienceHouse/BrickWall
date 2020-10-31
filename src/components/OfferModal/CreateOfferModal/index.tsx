@@ -13,15 +13,18 @@ import {
   InputGroup
 } from 'reactstrap';
 import { useReactOidc } from '@axa-fr/react-oidc-context';
-import { CreateOffer, Housing, PayType } from '../../api/types/offer';
-import { CitySelector } from '../CitySelector';
-import { PositionSelector } from '../PositionSelector';
-import { useCreateOffer } from '../../api/offer';
-import { Company } from '../../api/types/company';
-import { JobType } from '../../api/types/position';
-import { PayInput } from './PayInput';
-import { StipendInput } from './StipendInput';
-import { HousingInput } from './HousingInput';
+import { CreateOffer, Housing, PayType } from '../../../api/types/offer';
+import { useCreateOffer } from '../../../api/offer';
+import { Company } from '../../../api/types/company';
+import { JobType } from '../../../api/types/position';
+import { PayInput } from '../PayInput';
+import { StipendInput } from '../StipendInput';
+import { HousingInput } from '../HousingInput';
+import { PositionInput } from '../PositionInput';
+import { SigningInput } from '../SigningInput';
+import { CityInput } from '../CityInput';
+import { OfferDateInput } from '../OfferDateInput';
+import { OfferDeadlineInput } from '../OfferDeadlineInput';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -115,6 +118,7 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
         offerdeadline: offerDeadline,
         stipend: stipend && stipend >= 0 ? stipend : undefined,
         stocks: stocks && stocks >= 0 ? stocks : undefined,
+        signing_bonus: signing && signing >= 0 ? signing : undefined,
         relocation: relocation && relocation >= 0 ? relocation : undefined,
         housing: housing,
         body: body
@@ -123,80 +127,41 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
     }
   };
 
-  const onCitySelect = ({ value }: { value: number }) => {
-    setOfferLocationId(value);
-  };
-
-  const onPositionSelect = ({ value }: { value: number }) => {
-    setOfferPositionId(value);
-  };
-
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
-      <ModalHeader toggle={toggle}>Create Offer</ModalHeader>
+      <ModalHeader toggle={toggle}>Create Offer for {company.name}</ModalHeader>
       <ModalBody>
         <Form>
-          <FormGroup>
-            <Label for="offerPosition">Offer Position</Label>
-            <PositionSelector
-              name={'offerPosition'}
-              company={company}
-              onChange={onPositionSelect}
-              newPositionTitle={offerPositionTitle}
-              setNewPositionTitle={setOfferPositionTitle}
-              newPositionType={offerPositionType}
-              setNewPositionType={setOfferPositionType}
-            />
-          </FormGroup>
+          <PositionInput
+            company={company}
+            setOfferPositionId={setOfferPositionId}
+            offerPositionTitle={offerPositionTitle}
+            setOfferPositionTitle={setOfferPositionTitle}
+            offerPositionType={offerPositionType}
+            setOfferPositionType={setOfferPositionType}
+          />
           <PayInput
             pay={pay}
             setPay={setPay}
             payType={payType}
             setPayType={setPayType}
           />
-          <FormGroup>
-            <Label for="offerLocation">Offer Location</Label>
-            <CitySelector
-              name={'offerLocation'}
-              onChange={onCitySelect}
-              newCity={offerLocationCity}
-              setNewCity={setOfferLocationCity}
-              newState={offerLocationState}
-              setNewState={setOfferLocationState}
-              newCountry={offerLocationCountry}
-              setNewCountry={setOfferLocationCountry}
-              remote={remote}
-              setRemote={setRemote}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="offerDate">Offer Date</Label>
-            <Input
-              type={'date'}
-              name={'offerDate'}
-              id={'offerDate'}
-              placeholder={'Offer Date'}
-              value={
-                offerDate ? offerDate.toISOString().slice(0, 10) : undefined
-              }
-              onChange={event => setOfferDate(new Date(event.target.value))}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="offerDeadline">Offer Deadline</Label>
-            <Input
-              type="date"
-              name={'offerDeadline'}
-              id={'offerDeadline'}
-              placeholder={'Offer Answer due by Date'}
-              value={
-                offerDeadline
-                  ? offerDeadline.toISOString().slice(0, 10)
-                  : undefined
-              }
-              onChange={event => setOfferDeadline(new Date(event.target.value))}
-            />
-          </FormGroup>
+          <CityInput
+            setLocationId={setOfferLocationId}
+            newCity={offerLocationCity}
+            setNewCity={setOfferLocationCity}
+            newState={offerLocationState}
+            setNewState={setOfferLocationState}
+            newCountry={offerLocationCountry}
+            setNewCountry={setOfferLocationCountry}
+            remote={remote}
+            setRemote={setRemote}
+          />
+          <OfferDateInput offerDate={offerDate} setOfferDate={setOfferDate} />
+          <OfferDeadlineInput
+            offerDeadline={offerDeadline}
+            setOfferDeadline={setOfferDeadline}
+          />
           <FormGroup>
             <Label for="offerStocks">Stocks</Label>
             <InputGroup>
@@ -213,22 +178,7 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
               />
             </InputGroup>
           </FormGroup>
-          <FormGroup>
-            <Label for="offerSigning">Signing Bonus</Label>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input
-                type={'number'}
-                name={'offerSigning'}
-                id={'offerSigning'}
-                placeholder={`Example: 10000 ($10,000 signing bonus)`}
-                min={0}
-                value={signing}
-                invalid={signing ? signing <= 0 : undefined}
-                onChange={event => setSigning(parseFloat(event.target.value))}
-              />
-            </InputGroup>
-          </FormGroup>
+          <SigningInput signing={signing} setSigning={setSigning} />
           <FormGroup>
             <Label for="offerRelocation">Relocation</Label>
             <InputGroup>

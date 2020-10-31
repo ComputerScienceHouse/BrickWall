@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateOffer } from './types/offer';
+import { CreateOffer, UpdateOffer } from './types/offer';
 import v1 from '.';
 
 export const useCreateOffer = (newOffer?: CreateOffer) => {
@@ -15,6 +15,23 @@ export const useCreateOffer = (newOffer?: CreateOffer) => {
       });
     }
   }, [newOffer]);
+
+  return { isLoading, result };
+};
+
+export const useUpdateOffer = (offerId: number, updateOffer?: UpdateOffer) => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [result, setResult] = React.useState();
+
+  React.useEffect(() => {
+    if (updateOffer !== undefined) {
+      setIsLoading(true);
+      v1.put(`/offer/${offerId}`, updateOffer).then(res => {
+        setResult(res.data);
+        setIsLoading(false);
+      });
+    }
+  }, [updateOffer]);
 
   return { isLoading, result };
 };
