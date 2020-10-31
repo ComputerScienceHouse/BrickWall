@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 
 router.get(`/`, async (req, res) => {
   const { headquarters, interviews, offers, reviews } = req.query;
+  // Order by number of contributions after https://github.com/prisma/prisma-client-js/issues/249
   const result = await prisma.company.findMany({
     include: {
       headquarters: headquarters === 'true',
@@ -34,7 +35,14 @@ router.get(`/:companyId`, async (req, res) => {
     where: { id: +companyId },
     include: {
       headquarters: headquarters === 'true',
-      Interviews: interviews === 'true',
+      Interviews:
+        interviews === 'true'
+          ? {
+              include: {
+                position: true,
+              },
+            }
+          : false,
       Offers:
         offers === 'true'
           ? {
@@ -44,7 +52,14 @@ router.get(`/:companyId`, async (req, res) => {
               },
             }
           : false,
-      JobReviews: reviews === 'true',
+      JobReviews:
+        reviews === 'true'
+          ? {
+              include: {
+                position: true,
+              },
+            }
+          : false,
     },
   });
   res.json(result);
