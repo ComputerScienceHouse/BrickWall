@@ -17,6 +17,11 @@ import { OfferDateInput } from '../OfferDateInput';
 import { OfferDeadlineInput } from '../OfferDeadlineInput';
 import { PayInput } from '../PayInput';
 import { PositionInput } from '../PositionInput';
+import { StipendInput } from '../StipendInput';
+import { HousingInput } from '../HousingInput';
+import { SigningInput } from '../SigningInput';
+import { StocksInput } from '../StocksInput';
+import { RelocationInput } from '../RelocationInput';
 
 export interface UpdateOfferModalProps {
   isOpen: boolean;
@@ -34,15 +39,21 @@ export const UpdateOfferModal: React.FunctionComponent<UpdateOfferModalProps> = 
   const [updateOffer, setUpdateOffer] = React.useState<UpdateOffer>();
   const [pay, setPay] = React.useState<number>(offer.pay);
   const [payType, setPayType] = React.useState<PayType>(offer.paytype);
-  const [stipend, setStipend] = React.useState<number | null>(offer.stipend);
-  const [signing, setSigning] = React.useState<number | null>(
-    offer.signing_bonus
+  const [stipend, setStipend] = React.useState<number | undefined>(
+    offer.stipend ? offer.stipend : undefined
   );
-  const [stocks, setStocks] = React.useState<number | null>(offer.stocks);
-  const [relocation, setRelocation] = React.useState<number | null>(
-    offer.relocation
+  const [signing, setSigning] = React.useState<number | undefined>(
+    offer.signing_bonus ?? undefined
   );
-  const [housing, setHousing] = React.useState<Housing>(offer.housing);
+  const [stocks, setStocks] = React.useState<number | undefined>(
+    offer.stocks ?? undefined
+  );
+  const [relocation, setRelocation] = React.useState<number | undefined>(
+    offer.relocation ? offer.relocation : undefined
+  );
+  const [housing, setHousing] = React.useState<Housing | undefined>(
+    offer.housing
+  );
   const [offerDate, setOfferDate] = React.useState<Date | undefined>(
     offer.offerdate ? new Date(offer.offerdate) : undefined
   );
@@ -194,11 +205,23 @@ export const UpdateOfferModal: React.FunctionComponent<UpdateOfferModalProps> = 
             offerDeadline={offerDeadline}
             setOfferDeadline={setOfferDeadline}
           />
+          <StocksInput stocks={stocks} setStocks={setStocks} />
+          <SigningInput signing={signing} setSigning={setSigning} />
+          <RelocationInput
+            relocation={relocation}
+            setRelocation={setRelocation}
+          />
+          <HousingInput housing={housing} setHousing={setHousing} />
+          <StipendInput
+            stipend={stipend}
+            setStipend={setStipend}
+            housing={housing}
+          />
         </Form>
       </ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={onUpdateOffer}>
-          Create
+          Update
         </Button>{' '}
         <Button color="secondary" onClick={toggle}>
           Cancel

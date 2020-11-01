@@ -8,9 +8,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
-  InputGroupAddon,
-  InputGroup
+  Input
 } from 'reactstrap';
 import { useReactOidc } from '@axa-fr/react-oidc-context';
 import { CreateOffer, Housing, PayType } from '../../../api/types/offer';
@@ -25,6 +23,8 @@ import { SigningInput } from '../SigningInput';
 import { CityInput } from '../CityInput';
 import { OfferDateInput } from '../OfferDateInput';
 import { OfferDeadlineInput } from '../OfferDeadlineInput';
+import { StocksInput } from '../StocksInput';
+import { RelocationInput } from '../RelocationInput';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -162,41 +162,12 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
             offerDeadline={offerDeadline}
             setOfferDeadline={setOfferDeadline}
           />
-          <FormGroup>
-            <Label for="offerStocks">Stocks</Label>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input
-                type={'number'}
-                name={'offerStocks'}
-                id={'offerStocks'}
-                placeholder={`Example: 100000 ($100,000 RSU award at start date)`}
-                min={0}
-                value={stocks}
-                invalid={stocks ? stocks <= 0 : undefined}
-                onChange={event => setStocks(parseFloat(event.target.value))}
-              />
-            </InputGroup>
-          </FormGroup>
+          <StocksInput stocks={stocks} setStocks={setStocks} />
           <SigningInput signing={signing} setSigning={setSigning} />
-          <FormGroup>
-            <Label for="offerRelocation">Relocation</Label>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-              <Input
-                type={'number'}
-                name={'offerRelocation'}
-                id={'offerRelocation'}
-                placeholder={`Example: 3000 ($3000 grossed up)`}
-                min={0}
-                value={relocation}
-                invalid={relocation ? relocation <= 0 : undefined}
-                onChange={event =>
-                  setRelocation(parseFloat(event.target.value))
-                }
-              />
-            </InputGroup>
-          </FormGroup>
+          <RelocationInput
+            relocation={relocation}
+            setRelocation={setRelocation}
+          />
           <HousingInput housing={housing} setHousing={setHousing} />
           <StipendInput
             stipend={stipend}

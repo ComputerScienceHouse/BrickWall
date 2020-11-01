@@ -3,6 +3,7 @@ import { Card, CardBody, CardTitle } from 'reactstrap';
 import { Company } from '../../../api/types/company';
 import { Interview } from '../../../api/types/interview';
 import { ItemFooter } from '../ItemFooter';
+import { UpdateInterviewModal } from '../../InterviewModal/UpdateInterviewModal';
 
 interface InterviewItemProps {
   company: Company;
@@ -21,7 +22,11 @@ export const InterviewItem: React.FunctionComponent<InterviewItemProps> = ({
         </CardTitle>
         {interview.body}
       </CardBody>
-      <ItemFooter item={interview} company={company} />
+      <ItemFooter
+        item={interview}
+        company={company}
+        EditModal={UpdateInterviewModal}
+      />
     </Card>
   );
 };

@@ -3,6 +3,7 @@ import { Card, CardBody, CardTitle } from 'reactstrap';
 import { Company } from '../../../api/types/company';
 import { JobReview } from '../../../api/types/jobReview';
 import { ItemFooter } from '../ItemFooter';
+import { UpdateJobReviewModal } from '../../JobReviewModal/UpdateJobReviewModal';
 
 interface ReviewItemProps {
   company: Company;
@@ -20,7 +21,11 @@ export const ReviewItem: React.FunctionComponent<ReviewItemProps> = ({
           <h3>{review.position.title}</h3>
         </CardTitle>
       </CardBody>
-      <ItemFooter item={review} company={company} />
+      <ItemFooter
+        item={review}
+        company={company}
+        EditModal={UpdateJobReviewModal}
+      />
     </Card>
   );
 };

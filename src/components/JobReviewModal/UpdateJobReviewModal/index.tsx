@@ -1,3 +1,4 @@
+import React from 'react';
 import { JobReview } from '../../../api/types/jobReview';
 
 export interface UpdateJobReviewModalProps {
@@ -5,3 +6,7 @@ export interface UpdateJobReviewModalProps {
   toggle: () => void;
   item: JobReview;
 }
+
+export const UpdateJobReviewModal: React.FunctionComponent = () => {
+  return <></>;
+};
