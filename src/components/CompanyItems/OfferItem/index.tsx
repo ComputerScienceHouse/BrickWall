@@ -5,17 +5,23 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Card, CardBody, CardSubtitle, CardTitle, Table } from 'reactstrap';
+import { Company } from '../../../api/types/company';
 import { Offer, PayType } from '../../../api/types/offer';
+import { UpdateOfferModal } from '../../OfferModal/UpdateOfferModal';
 import { formatMoney } from '../../utils';
 import { ItemFooter } from '../ItemFooter';
 
 import './offerItem.scss';
 
 interface OfferProps {
+  company: Company;
   offer: Offer;
 }
 
-export const OfferItem: React.FunctionComponent<OfferProps> = ({ offer }) => {
+export const OfferItem: React.FunctionComponent<OfferProps> = ({
+  offer,
+  company
+}) => {
   return (
     <Card style={{ marginBottom: '1.5vh' }}>
       <CardBody>
@@ -118,7 +124,7 @@ export const OfferItem: React.FunctionComponent<OfferProps> = ({ offer }) => {
         </Table>
         {offer.body}
       </CardBody>
-      <ItemFooter item={offer} />
+      <ItemFooter item={offer} company={company} EditModal={UpdateOfferModal} />
     </Card>
   );
 };

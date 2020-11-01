@@ -6,7 +6,7 @@ import { usePositions } from '../../api/position';
 import { Company } from '../../api/types/company';
 import { JobType } from '../../api/types/position';
 
-type SelectVal = { value: number; label: string };
+export type SelectVal = { value: number; label: string };
 
 interface PositionSelectorProps {
   name?: string;

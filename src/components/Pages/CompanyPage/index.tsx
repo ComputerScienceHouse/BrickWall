@@ -27,15 +27,23 @@ export const CompanyPage: React.FunctionComponent = () => {
   const mainView: { [key in ViewSection]: React.ReactNode } = {
     [ViewSection.REVIEWS]: company?.JobReviews?.filter(
       review => review.position.job_type === display || display === undefined
-    ).map(review => <ReviewItem key={review.id} review={review} />),
+    ).map(review => (
+      <ReviewItem key={review.id} review={review} company={company} />
+    )),
     [ViewSection.OFFERS]: company?.Offers?.filter(
       offer => offer.position.job_type === display || display === undefined
-    ).map(offer => <OfferItem key={offer.id} offer={offer} />),
+    ).map(offer => (
+      <OfferItem key={offer.id} offer={offer} company={company} />
+    )),
     [ViewSection.INTERVIEWS]: company?.Interviews?.filter(
       interview =>
         interview.position.job_type === display || display === undefined
     ).map(interview => (
-      <InterviewItem key={interview.id} interview={interview} />
+      <InterviewItem
+        key={interview.id}
+        interview={interview}
+        company={company}
+      />
     ))
   };
 
