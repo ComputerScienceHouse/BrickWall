@@ -13,8 +13,8 @@ router.get(`/`, async (req, res) => {
       headquarters: headquarters === 'true',
       Interviews: interviews === 'true',
       Offers: offers === 'true',
-      JobReviews: reviews === 'true',
-    },
+      JobReviews: reviews === 'true'
+    }
   });
   res.json(result);
 });
@@ -22,8 +22,8 @@ router.get(`/`, async (req, res) => {
 router.post(`/`, async (req, res) => {
   const result = await prisma.company.create({
     data: {
-      ...req.body,
-    },
+      ...req.body
+    }
   });
   res.json(result);
 });
@@ -39,8 +39,8 @@ router.get(`/:companyId`, async (req, res) => {
         interviews === 'true'
           ? {
               include: {
-                position: true,
-              },
+                position: true
+              }
             }
           : false,
       Offers:
@@ -48,19 +48,19 @@ router.get(`/:companyId`, async (req, res) => {
           ? {
               include: {
                 position: true,
-                location: true,
-              },
+                location: true
+              }
             }
           : false,
       JobReviews:
         reviews === 'true'
           ? {
               include: {
-                position: true,
-              },
+                position: true
+              }
             }
-          : false,
-    },
+          : false
+    }
   });
   res.json(result);
 });
@@ -70,8 +70,8 @@ router.put(`/:companyId`, async (req, res) => {
   const result = await prisma.company.update({
     where: { id: +companyId },
     data: {
-      ...req.body,
-    },
+      ...req.body
+    }
   });
   res.json(result);
 });
@@ -79,7 +79,7 @@ router.put(`/:companyId`, async (req, res) => {
 router.delete(`/:companyId`, async (req, res) => {
   const { companyId } = req.params;
   const result = await prisma.company.delete({
-    where: { id: +companyId },
+    where: { id: +companyId }
   });
   res.json(result);
 });
@@ -89,8 +89,8 @@ router.post(`/upload/:companyId`, uploadS3.single('file'), async (req, res) => {
   await prisma.company.update({
     where: { id: +companyId },
     data: {
-      logo: req.file.originalname,
-    },
+      logo: req.file.originalname
+    }
   });
   res.json(req.file);
 });

@@ -12,8 +12,8 @@ router.get(`/:companyId`, async (req, res) => {
     include: {
       position: true,
       location: location === 'true',
-      company: company === 'true',
-    },
+      company: company === 'true'
+    }
   });
   res.json(result);
 });
@@ -21,8 +21,8 @@ router.get(`/:companyId`, async (req, res) => {
 router.post(`/`, async (req, res) => {
   const result = await prisma.offer.create({
     data: {
-      ...req.body,
-    },
+      ...req.body
+    }
   });
   res.json(result);
 });
@@ -32,8 +32,8 @@ router.put(`/:offerId`, async (req, res) => {
   const result = await prisma.offer.update({
     where: { id: +offerId },
     data: {
-      ...req.body,
-    },
+      ...req.body
+    }
   });
   res.json(result);
 });

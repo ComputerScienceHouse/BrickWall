@@ -11,8 +11,8 @@ router.get(`/:companyId`, async (req, res) => {
     where: { companyId: +companyId },
     include: {
       position: true,
-      company: company === 'true',
-    },
+      company: company === 'true'
+    }
   });
   res.json(result);
 });
@@ -20,8 +20,8 @@ router.get(`/:companyId`, async (req, res) => {
 router.post(`/`, async (req, res) => {
   const result = await prisma.interview.create({
     data: {
-      ...req.body,
-    },
+      ...req.body
+    }
   });
   res.json(result);
 });
@@ -31,8 +31,8 @@ router.put(`/:offerId`, async (req, res) => {
   const result = await prisma.interview.update({
     where: { id: +interviewId },
     data: {
-      ...req.body,
-    },
+      ...req.body
+    }
   });
   res.json(result);
 });

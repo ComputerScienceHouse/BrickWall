@@ -31,7 +31,7 @@ export const useUpdateOffer = (offerId: number, updateOffer?: UpdateOffer) => {
         setIsLoading(false);
       });
     }
-  }, [updateOffer]);
+  }, [offerId, updateOffer]);
 
   return { isLoading, result };
 };

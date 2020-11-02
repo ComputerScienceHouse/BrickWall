@@ -1,0 +1,41 @@
+{
+  "name": "@csh/brickwall",
+  "version": "1.0.0",
+  "description": "CSH's website for job finding purposes.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"yarn workspace @csh/brickwall-server start\" \"yarn workspace @csh/brickwall-client start\"",
+    "generate": "yarn workspace @csh/brickwall-server generate",
+    "migrate": "yarn workspace @csh/brickwall-server migrate",
+    "build": "yarn workspace @csh/brickwall-client build",
+    "test": "yarn workspace @csh/brickwall-client test",
+    "prod:build": "yarn workspace @csh/brickwall-client build && yarn workspace @csh/brickwall-server prod",
+    "prod": "yarn workspace @csh/brickwall-server prod",
+    "lint": "yarn workspace @csh/brickwall-server lint && yarn workspace @csh/brickwall-client lint"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ComputerScienceHouse/BrickWall.git"
+  },
+  "keywords": [],
+  "author": "Computer Science House",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ComputerScienceHouse/BrickWall/issues"
+  },
+  "homepage": "https://github.com/ComputerScienceHouse/BrickWall#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "eslint": "^7.12.1",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.5"
+  },
+  "engines": {
+    "node": ">=14.15.0"
+  }
+}

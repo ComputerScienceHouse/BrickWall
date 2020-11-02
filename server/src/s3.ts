@@ -7,7 +7,7 @@ export const s3 = new S3({
   secretAccessKey: process.env.S3_SECRET_KEY,
   endpoint: 'https://s3.csh.rit.edu',
   s3BucketEndpoint: false,
-  s3ForcePathStyle: true,
+  s3ForcePathStyle: true
 });
 
 export const uploadS3 = multer({
@@ -22,6 +22,6 @@ export const uploadS3 = multer({
     },
     key: (req, file, cb) => {
       cb(null, file.originalname);
-    },
-  }),
+    }
+  })
 });

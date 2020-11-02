@@ -1,5 +1,5 @@
 {
-  "name": "csh-brickwall",
+  "name": "@csh/brickwall-client",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -21,7 +21,7 @@
     "react-scripts": "^4.0.0",
     "react-select": "^3.1.0",
     "react-use": "^15.3.4",
-    "reactstrap": "^8.6.0"
+    "reactstrap": "^8.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,9 +47,15 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.21.5",
-    "sass": "^1.28.0",
     "prettier": "^2.1.2",
+    "sass": "^1.28.0",
     "typescript": "^4.0.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "arrowParens": "avoid",
+    "trailingComma": "none"
   },
   "browserslist": {
     "production": [
@@ -62,8 +68,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": ">=14.15.0"
   }
 }
