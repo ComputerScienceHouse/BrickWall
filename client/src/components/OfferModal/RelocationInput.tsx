@@ -1,11 +1,12 @@
-import React from 'react';
 import {
   FormGroup,
-  Label,
   Input,
   InputGroup,
-  InputGroupAddon
+  InputGroupAddon,
+  Label
 } from 'reactstrap';
+
+import React from 'react';
 
 interface RelocationInputProps {
   relocation?: number;

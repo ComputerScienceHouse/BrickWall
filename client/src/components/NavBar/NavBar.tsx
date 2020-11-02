@@ -1,14 +1,15 @@
-import React from 'react';
 import {
   Collapse,
   Container,
   Nav,
+  NavItem,
   Navbar,
-  NavbarToggler,
-  NavItem
+  NavbarToggler
 } from 'reactstrap';
+
 import { NavLink } from 'react-router-dom';
 import Profile from './Profile';
+import React from 'react';
 
 const NavBar: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);

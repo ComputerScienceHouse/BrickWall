@@ -1,6 +1,6 @@
-import { Connect, Create } from '..';
 import { City, CreateCity } from './city';
 import { Company, CreateCompany } from './company';
+import { Connect, Create } from '..';
 import { CreatePosition, JobPosition } from './position';
 
 export enum PayType {

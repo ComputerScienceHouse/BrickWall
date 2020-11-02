@@ -1,11 +1,12 @@
-import React from 'react';
 import { Button, Col, Row } from 'reactstrap';
-import { useCompanies } from '../../../api/company';
-import InfoSpinner from '../../InfoSpinner';
-import { ViewSelector } from '../../ViewSelector';
-import { MenuBar } from '../../MenuBar';
-import { CompanyCard } from '../../CompanyCard';
-import { CreateCompanyModal } from '../../CreateCompanyModal';
+
+import { CompanyCard } from '@csh/ui/components/CompanyCard';
+import { CreateCompanyModal } from '@csh/ui/components/CreateCompanyModal';
+import InfoSpinner from '@csh/ui/components/InfoSpinner';
+import { MenuBar } from '@csh/ui/components/MenuBar';
+import React from 'react';
+import { ViewSelector } from '@csh/ui/components/ViewSelector';
+import { useCompanies } from '@csh/ui/api/company';
 import useToggle from 'react-use/lib/useToggle';
 
 export const CompaniesPage: React.FunctionComponent = () => {

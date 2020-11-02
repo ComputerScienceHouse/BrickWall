@@ -1,5 +1,5 @@
+import { JobReview } from '@csh/ui/api/types/jobReview';
 import React from 'react';
-import { JobReview } from '../../../api/types/jobReview';
 
 export interface UpdateJobReviewModalProps {
   isOpen: boolean;

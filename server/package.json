@@ -8,7 +8,8 @@
     "generate": "prisma generate",
     "migrate": "prisma migrate save --experimental && prisma migrate up --experimental",
     "prod": "NODE_ENV=production ts-node src/server.ts",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
   },
   "devDependencies": {
     "@prisma/cli": "^2.10.1",

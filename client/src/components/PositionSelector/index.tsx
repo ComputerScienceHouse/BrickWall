@@ -1,10 +1,11 @@
+import { Button, Input, InputGroup } from 'reactstrap';
+
+import { Company } from '@csh/ui/api/types/company';
+import { JobType } from '@csh/ui/api/types/position';
 import React from 'react';
 import Select from 'react-select';
+import { usePositions } from '@csh/ui/api/position';
 import { useToggle } from 'react-use';
-import { InputGroup, Input, Button } from 'reactstrap';
-import { usePositions } from '../../api/position';
-import { Company } from '../../api/types/company';
-import { JobType } from '../../api/types/position';
 
 export type SelectVal = { value: number; label: string };
 

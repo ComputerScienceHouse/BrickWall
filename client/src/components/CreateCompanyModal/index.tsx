@@ -1,18 +1,19 @@
-import React from 'react';
 import {
   Button,
+  Form,
+  FormGroup,
+  Input,
+  Label,
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
-  Form,
-  FormGroup,
-  Label,
-  Input
+  ModalHeader
 } from 'reactstrap';
-import { useCreateCompany } from '../../api/company';
-import { CreateCompany } from '../../api/types/company';
+
 import { CitySelector } from '../CitySelector';
+import { CreateCompany } from '@csh/ui/api/types/company';
+import React from 'react';
+import { useCreateCompany } from '@csh/ui/api/company';
 
 interface CreateCompanyModalProps {
   isOpen: boolean;

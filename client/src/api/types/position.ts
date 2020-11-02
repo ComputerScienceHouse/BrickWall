@@ -1,5 +1,5 @@
-import { Connect, Create } from '..';
 import { Company, CreateCompany } from './company';
+import { Connect, Create } from '..';
 
 export enum JobType {
   CO_OP = 'co_op',

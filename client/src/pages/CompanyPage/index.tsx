@@ -1,15 +1,16 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useCompany } from '../../../api/company';
-import { JobType } from '../../../api/types/position';
-import { CompanySummary } from '../../CompanySummary';
-import InfoSpinner from '../../InfoSpinner';
-import { SalaryBar } from '../../SalaryBar';
-import { ViewSection } from '../../enums';
-import { OfferItem } from '../../CompanyItems/OfferItem';
-import { ReviewItem } from '../../CompanyItems/ReviewItem';
-import { InterviewItem } from '../../CompanyItems/InterviewItem';
+
+import { CompanySummary } from '@csh/ui/components/CompanySummary';
+import InfoSpinner from '@csh/ui/components/InfoSpinner';
+import { InterviewItem } from '@csh/ui/components/CompanyItems/InterviewItem';
+import { JobType } from '@csh/ui/api/types/position';
+import { OfferItem } from '@csh/ui/components/CompanyItems/OfferItem';
+import React from 'react';
+import { ReviewItem } from '@csh/ui/components/CompanyItems/ReviewItem';
+import { SalaryBar } from '@csh/ui/components/SalaryBar';
+import { ViewSection } from '@csh/ui/components/enums';
+import { useCompany } from '@csh/ui/api/company';
+import { useParams } from 'react-router-dom';
 
 interface RouteParams {
   companyId: string;

@@ -1,12 +1,13 @@
-import React from 'react';
 import {
   FormGroup,
-  Label,
   Input,
+  InputGroup,
   InputGroupAddon,
-  InputGroup
+  Label
 } from 'reactstrap';
-import { PayType } from '../../api/types/offer';
+
+import { PayType } from '@csh/ui/api/types/offer';
+import React from 'react';
 
 interface PayInputProps {
   pay: number | undefined;

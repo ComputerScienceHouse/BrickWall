@@ -1,5 +1,5 @@
-import React from 'react';
 import { City } from './types/city';
+import React from 'react';
 import v1 from '.';
 
 export const useCities = () => {

@@ -1,6 +1,7 @@
-import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
+
 import { CitySelector } from '../CitySelector';
+import React from 'react';
 
 interface CityInputProps {
   setLocationId: (offerLocationId: number) => void;

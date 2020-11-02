@@ -1,8 +1,9 @@
-import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
+
+import { Company } from '@csh/ui/api/types/company';
+import { JobType } from '@csh/ui/api/types/position';
 import { PositionSelector } from '../PositionSelector';
-import { Company } from '../../api/types/company';
-import { JobType } from '../../api/types/position';
+import React from 'react';
 
 interface PositionInputProps {
   company: Company;

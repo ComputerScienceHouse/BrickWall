@@ -1,8 +1,9 @@
+import { Button, FormGroup, Input, InputGroup, Label } from 'reactstrap';
+
 import React from 'react';
 import Select from 'react-select';
+import { useCities } from '@csh/ui/api/city';
 import { useToggle } from 'react-use';
-import { Button, FormGroup, Input, InputGroup, Label } from 'reactstrap';
-import { useCities } from '../../api/city';
 
 type SelectVal = { value: number; label: string };
 

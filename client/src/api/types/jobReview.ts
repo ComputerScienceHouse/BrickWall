@@ -1,5 +1,5 @@
-import { Connect, Create } from '..';
 import { Company, CreateCompany } from './company';
+import { Connect, Create } from '..';
 import { CreatePosition, JobPosition } from './position';
 
 export interface JobReview {

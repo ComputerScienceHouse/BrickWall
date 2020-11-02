@@ -1,6 +1,7 @@
+import './infospinner.scss';
+
 import React from 'react';
 import { Spinner } from 'reactstrap';
-import './infospinner.scss';
 
 interface InfoSpinnerProps {
   isCentered?: boolean;

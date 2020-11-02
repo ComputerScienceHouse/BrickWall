@@ -1,6 +1,6 @@
-import React from 'react';
 import { Container } from 'reactstrap';
 import { NavBar } from '../components/NavBar';
+import React from 'react';
 
 export const PageContainer: React.FunctionComponent = ({ children }) => {
   return (

@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "amatiasq.sort-imports",
+        "dbaeumer.vscode-eslint",
+        "prisma.prisma",
+        "esbenp.prettier-vscode"
+    ]
+}

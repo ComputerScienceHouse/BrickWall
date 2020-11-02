@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
+import './index.scss';
+
 import {
   AuthenticationProvider,
-  oidcLog,
-  InMemoryWebStorage
+  InMemoryWebStorage,
+  oidcLog
 } from '@axa-fr/react-oidc-context';
-import oidcConfiguration from './config';
-import { LoggingIn } from './callbacks/LoggingIn';
+
+import App from './components/App';
 import { Authenticating } from './callbacks/Authenticating';
+import { LoggingIn } from './callbacks/LoggingIn';
 import { NotAuthenticated } from './callbacks/NotAuthenticated';
 import { NotAuthorized } from './callbacks/NotAuthorized';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import oidcConfiguration from './config';
 
 ReactDOM.render(
   <AuthenticationProvider

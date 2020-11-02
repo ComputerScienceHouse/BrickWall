@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Card,
   CardBody,
@@ -7,16 +6,18 @@ import {
   CardSubtitle,
   CardTitle
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TooltipHover } from '../TooltipHover';
 import {
+  faBookOpen,
   faComments,
   faHandshake,
-  faBookOpen,
   faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { Company } from '../../api/types/company';
+
+import { Company } from '@csh/ui/api/types/company';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import React from 'react';
+import { TooltipHover } from '../TooltipHover';
 
 interface CompanyCardProps {
   company: Company;

@@ -12,7 +12,8 @@
     "test": "yarn workspace @csh/brickwall-client test",
     "prod:build": "yarn workspace @csh/brickwall-client build && yarn workspace @csh/brickwall-server prod",
     "prod": "yarn workspace @csh/brickwall-server prod",
-    "lint": "yarn workspace @csh/brickwall-server lint && yarn workspace @csh/brickwall-client lint"
+    "lint": "yarn workspace @csh/brickwall-server lint && yarn workspace @csh/brickwall-client lint",
+    "lint:fix": "yarn workspace @csh/brickwall-server lint:fix && yarn workspace @csh/brickwall-client lint:fix"
   },
   "workspaces": [
     "client",

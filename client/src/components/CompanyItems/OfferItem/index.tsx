@@ -1,17 +1,18 @@
-import {
-  faMapMarkerAlt,
-  faLaptopHouse
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import './offerItem.scss';
+
 import { Card, CardBody, CardSubtitle, CardTitle, Table } from 'reactstrap';
-import { Company } from '../../../api/types/company';
-import { Offer, PayType } from '../../../api/types/offer';
+import { Offer, PayType } from '@csh/ui/api/types/offer';
+import {
+  faLaptopHouse,
+  faMapMarkerAlt
+} from '@fortawesome/free-solid-svg-icons';
+
+import { Company } from '@csh/ui/api/types/company';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ItemFooter } from '../ItemFooter';
+import React from 'react';
 import { UpdateOfferModal } from '../../OfferModal/UpdateOfferModal';
 import { formatMoney } from '../../utils';
-import { ItemFooter } from '../ItemFooter';
-
-import './offerItem.scss';
 
 interface OfferProps {
   company: Company;
