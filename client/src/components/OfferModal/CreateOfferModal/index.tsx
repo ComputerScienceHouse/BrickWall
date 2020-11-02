@@ -5,10 +5,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
-  Form,
-  FormGroup,
-  Label,
-  Input
+  Form
 } from 'reactstrap';
 import { useReactOidc } from '@axa-fr/react-oidc-context';
 import { CreateOffer, Housing, PayType } from '../../../api/types/offer';
@@ -25,6 +22,7 @@ import { OfferDateInput } from '../OfferDateInput';
 import { OfferDeadlineInput } from '../OfferDeadlineInput';
 import { StocksInput } from '../StocksInput';
 import { RelocationInput } from '../RelocationInput';
+import { BodyInput } from '../BodyInput';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -174,16 +172,7 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
             setStipend={setStipend}
             housing={housing}
           />
-          <FormGroup>
-            <Label for="offerBody">Details</Label>
-            <Input
-              type="textarea"
-              name="offerBody"
-              id="offerBody"
-              value={body}
-              onChange={event => setBody(event.target.value)}
-            />
-          </FormGroup>
+          <BodyInput body={body} setBody={setBody} />
         </Form>
       </ModalBody>
       <ModalFooter>

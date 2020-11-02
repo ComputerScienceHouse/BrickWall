@@ -22,6 +22,7 @@ import { HousingInput } from '../HousingInput';
 import { SigningInput } from '../SigningInput';
 import { StocksInput } from '../StocksInput';
 import { RelocationInput } from '../RelocationInput';
+import { BodyInput } from '../BodyInput';
 
 export interface UpdateOfferModalProps {
   isOpen: boolean;
@@ -217,6 +218,7 @@ export const UpdateOfferModal: React.FunctionComponent<UpdateOfferModalProps> = 
             setStipend={setStipend}
             housing={housing}
           />
+          <BodyInput body={body} setBody={setBody} />
         </Form>
       </ModalBody>
       <ModalFooter>
