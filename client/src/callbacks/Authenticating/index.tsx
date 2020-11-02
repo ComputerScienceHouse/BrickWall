@@ -1,5 +1,5 @@
-import React from 'react';
 import InfoSpinner from '../../components/InfoSpinner';
+import React from 'react';
 
 export const Authenticating: React.FunctionComponent = () => {
   return <InfoSpinner isCentered>Redirecting to CSH SSO</InfoSpinner>;

@@ -1,12 +1,13 @@
-import React from 'react';
 import {
   FormGroup,
-  Label,
   Input,
+  InputGroup,
   InputGroupAddon,
-  InputGroup
+  Label
 } from 'reactstrap';
-import { Housing } from '../../api/types/offer';
+
+import { Housing } from '@csh/ui/api/types/offer';
+import React from 'react';
 
 interface StipendInputProps {
   stipend: number | undefined;

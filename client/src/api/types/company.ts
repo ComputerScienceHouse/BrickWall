@@ -1,9 +1,10 @@
-import { Connect, Create } from '..';
 import { City, CreateCity } from './city';
+import { Connect, Create } from '..';
+
 import { Interview } from './interview';
+import { JobPosition } from './position';
 import { JobReview } from './jobReview';
 import { Offer } from './offer';
-import { JobPosition } from './position';
 
 export interface Company {
   id: number;

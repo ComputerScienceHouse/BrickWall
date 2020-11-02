@@ -1,7 +1,8 @@
-import React from 'react';
+import { Offer, PayType } from '@csh/ui/api/types/offer';
+
+import { JobType } from '@csh/ui/api/types/position';
 import { Progress } from 'reactstrap';
-import { Offer, PayType } from '../../api/types/offer';
-import { JobType } from '../../api/types/position';
+import React from 'react';
 import { formatMoney } from '../utils';
 
 interface SalaryBarProps {

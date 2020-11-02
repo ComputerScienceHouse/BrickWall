@@ -1,11 +1,12 @@
-import React from 'react';
 import {
   FormGroup,
-  Label,
   Input,
+  InputGroup,
   InputGroupAddon,
-  InputGroup
+  Label
 } from 'reactstrap';
+
+import React from 'react';
 
 interface SigningInputProps {
   signing?: number;

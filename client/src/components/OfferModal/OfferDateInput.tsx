@@ -1,5 +1,6 @@
-import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
+
+import React from 'react';
 
 interface OfferDateInputProps {
   offerDate?: Date;

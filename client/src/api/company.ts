@@ -1,5 +1,6 @@
-import React from 'react';
 import { Company, CreateCompany } from './types/company';
+
+import React from 'react';
 import v1 from '.';
 
 export const useCompany = (

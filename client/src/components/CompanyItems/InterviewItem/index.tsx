@@ -1,8 +1,9 @@
-import React from 'react';
 import { Card, CardBody, CardTitle } from 'reactstrap';
-import { Company } from '../../../api/types/company';
-import { Interview } from '../../../api/types/interview';
+
+import { Company } from '@csh/ui/api/types/company';
+import { Interview } from '@csh/ui/api/types/interview';
 import { ItemFooter } from '../ItemFooter';
+import React from 'react';
 import { UpdateInterviewModal } from '../../InterviewModal/UpdateInterviewModal';
 
 interface InterviewItemProps {

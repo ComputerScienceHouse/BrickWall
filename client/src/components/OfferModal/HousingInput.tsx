@@ -1,6 +1,7 @@
+import { FormGroup, Input, Label } from 'reactstrap';
+
+import { Housing } from '@csh/ui/api/types/offer';
 import React from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
-import { Housing } from '../../api/types/offer';
 
 interface HousingInputProps {
   housing: Housing | undefined;

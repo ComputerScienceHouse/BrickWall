@@ -1,5 +1,3 @@
-import { useReactOidc } from '@axa-fr/react-oidc-context';
-import React from 'react';
 import {
   Button,
   Form,
@@ -8,21 +6,24 @@ import {
   ModalFooter,
   ModalHeader
 } from 'reactstrap';
-import { useUpdateOffer } from '../../../api/offer';
-import { Company } from '../../../api/types/company';
-import { Housing, Offer, PayType, UpdateOffer } from '../../../api/types/offer';
-import { JobType } from '../../../api/types/position';
+import { Housing, Offer, PayType, UpdateOffer } from '@csh/ui/api/types/offer';
+
+import { BodyInput } from '../BodyInput';
 import { CityInput } from '../CityInput';
+import { Company } from '@csh/ui/api/types/company';
+import { HousingInput } from '../HousingInput';
+import { JobType } from '@csh/ui/api/types/position';
 import { OfferDateInput } from '../OfferDateInput';
 import { OfferDeadlineInput } from '../OfferDeadlineInput';
 import { PayInput } from '../PayInput';
 import { PositionInput } from '../PositionInput';
-import { StipendInput } from '../StipendInput';
-import { HousingInput } from '../HousingInput';
-import { SigningInput } from '../SigningInput';
-import { StocksInput } from '../StocksInput';
+import React from 'react';
 import { RelocationInput } from '../RelocationInput';
-import { BodyInput } from '../BodyInput';
+import { SigningInput } from '../SigningInput';
+import { StipendInput } from '../StipendInput';
+import { StocksInput } from '../StocksInput';
+import { useReactOidc } from '@axa-fr/react-oidc-context';
+import { useUpdateOffer } from '@csh/ui/api/offer';
 
 export interface UpdateOfferModalProps {
   isOpen: boolean;

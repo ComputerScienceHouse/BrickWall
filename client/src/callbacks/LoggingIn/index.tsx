@@ -1,7 +1,6 @@
-import React from 'react';
 import InfoSpinner from '../../components/InfoSpinner';
-
 import { Jumbotron } from 'reactstrap';
+import React from 'react';
 
 export const LoggingIn: React.FunctionComponent = () => {
   return (

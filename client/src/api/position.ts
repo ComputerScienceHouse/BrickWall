@@ -1,5 +1,5 @@
-import React from 'react';
 import { JobPosition } from './types/position';
+import React from 'react';
 import v1 from '.';
 
 export const usePositions = (companyId: number) => {

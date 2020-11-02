@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import { withOidcSecure } from '@axa-fr/react-oidc-context';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+
+import { CompaniesPage } from '@csh/ui/pages/CompaniesPage';
+import { CompanyPage } from '@csh/ui/pages/CompanyPage';
 import { Home } from './index';
-import { CompaniesPage } from './Pages/CompaniesPage';
-import { CompanyPage } from './Pages/CompanyPage';
 import PageContainer from '../containers/PageContainer';
+import { withOidcSecure } from '@axa-fr/react-oidc-context';
 
 class App extends Component {
   render() {

@@ -1,24 +1,25 @@
-import React from 'react';
-import { faMapMarkerAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './company.scss';
+
 import {
+  ButtonDropdown,
   Card,
   CardBody,
-  CardTitle,
+  CardImg,
   CardSubtitle,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
+  CardTitle,
   DropdownItem,
-  CardImg
+  DropdownMenu,
+  DropdownToggle
 } from 'reactstrap';
-import { Company } from '../../api/types/company';
-import { JobType } from '../../api/types/position';
-import { CompanyNav } from '../CompanyNav';
-import { CreateOfferModal } from '../OfferModal/CreateOfferModal';
-import { CreateInterviewModal } from '../CreateInterviewModal';
+import { faMapMarkerAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import './company.scss';
+import { Company } from '@csh/ui/api/types/company';
+import { CompanyNav } from '../CompanyNav';
+import { CreateInterviewModal } from '../CreateInterviewModal';
+import { CreateOfferModal } from '../OfferModal/CreateOfferModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { JobType } from '@csh/ui/api/types/position';
+import React from 'react';
 import { ViewSection } from '../enums';
 import { useToggle } from 'react-use';
 

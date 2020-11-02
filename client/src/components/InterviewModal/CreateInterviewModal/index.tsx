@@ -1,21 +1,22 @@
-import React from 'react';
 import {
   Button,
+  Form,
+  FormGroup,
+  Input,
+  Label,
   Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader,
-  Form,
-  FormGroup,
-  Label,
-  Input
+  ModalHeader
 } from 'reactstrap';
+
+import { Company } from '@csh/ui/api/types/company';
+import { CreateInterview } from '@csh/ui/api/types/interview';
+import { JobType } from '@csh/ui/api/types/position';
+import { PositionSelector } from '@csh/ui/components/PositionSelector';
+import React from 'react';
+import { useCreateInterview } from '@csh/ui/api/interview';
 import { useReactOidc } from '@axa-fr/react-oidc-context';
-import { PositionSelector } from '../PositionSelector';
-import { Company } from '../../api/types/company';
-import { JobType } from '../../api/types/position';
-import { CreateInterview } from '../../api/types/interview';
-import { useCreateInterview } from '../../api/interview';
 
 interface CreateInterviewModalProps {
   isOpen: boolean;

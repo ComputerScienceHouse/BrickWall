@@ -1,14 +1,15 @@
-import { useReactOidc } from '@axa-fr/react-oidc-context';
-import React, { FunctionComponent } from 'react';
-import { useToggle } from 'react-use';
 import { Button, CardFooter } from 'reactstrap';
-import { Interview } from '../../../api/types/interview';
-import { JobReview } from '../../../api/types/jobReview';
-import { Offer } from '../../../api/types/offer';
-import { UpdateOfferModalProps } from '../../OfferModal/UpdateOfferModal';
-import { UpdateInterviewModalProps } from '../../InterviewModal/UpdateInterviewModal';
-import { UpdateJobReviewModalProps } from '../../JobReviewModal/UpdateJobReviewModal';
-import { Company } from '../../../api/types/company';
+import React, { FunctionComponent } from 'react';
+
+import { Company } from '@csh/ui/api/types/company';
+import { Interview } from '@csh/ui/api/types/interview';
+import { JobReview } from '@csh/ui/api/types/jobReview';
+import { Offer } from '@csh/ui/api/types/offer';
+import { UpdateInterviewModalProps } from '@csh/ui/components/InterviewModal/UpdateInterviewModal';
+import { UpdateJobReviewModalProps } from '@csh/ui/components/JobReviewModal/UpdateJobReviewModal';
+import { UpdateOfferModalProps } from '@csh/ui/components/OfferModal/UpdateOfferModal';
+import { useReactOidc } from '@axa-fr/react-oidc-context';
+import { useToggle } from 'react-use';
 
 interface ItemFooterProps {
   item: JobReview | Interview | Offer;

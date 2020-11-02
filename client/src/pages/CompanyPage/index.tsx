@@ -1,15 +1,16 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import { Card, CardBody, Col, Row } from 'reactstrap';
-import { useCompany } from '../../../api/company';
-import { JobType } from '../../../api/types/position';
+
 import { CompanySummary } from '../../CompanySummary';
 import InfoSpinner from '../../InfoSpinner';
+import { InterviewItem } from '../../CompanyItems/InterviewItem';
+import { JobType } from '@csh/ui/api/types/position';
+import { OfferItem } from '../../CompanyItems/OfferItem';
+import React from 'react';
+import { ReviewItem } from '../../CompanyItems/ReviewItem';
 import { SalaryBar } from '../../SalaryBar';
 import { ViewSection } from '../../enums';
-import { OfferItem } from '../../CompanyItems/OfferItem';
-import { ReviewItem } from '../../CompanyItems/ReviewItem';
-import { InterviewItem } from '../../CompanyItems/InterviewItem';
+import { useCompany } from '@csh/ui/api/company';
+import { useParams } from 'react-router-dom';
 
 interface RouteParams {
   companyId: string;
