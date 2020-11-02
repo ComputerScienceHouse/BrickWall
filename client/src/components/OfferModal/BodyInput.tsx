@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
 
 interface BodyInputProps {
-  body: string;
+  body?: string;
   setBody: (body: string) => void;
 }
 

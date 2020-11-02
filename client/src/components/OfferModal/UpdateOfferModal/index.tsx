@@ -62,7 +62,9 @@ export const UpdateOfferModal: React.FunctionComponent<UpdateOfferModalProps> = 
     offer.offerdeadline ? new Date(offer.offerdeadline) : undefined
   );
   const [remote, setRemote] = React.useState<boolean>(offer.remote);
-  const [body, setBody] = React.useState<string | null>(offer.body);
+  const [body, setBody] = React.useState<string | undefined>(
+    offer.body ?? undefined
+  );
 
   const [offerPositionId, setOfferPositionId] = React.useState<number>(
     offer.position.id
