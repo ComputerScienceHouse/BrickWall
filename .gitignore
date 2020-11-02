@@ -30,4 +30,4 @@ node_modules
 dist
 .env.local
 .vscode
-.env
+prisma/.env

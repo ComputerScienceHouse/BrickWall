@@ -1,0 +1,40 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node CI
+
+on:
+  push:
+    branches: [develop, master]
+  pull_request:
+    branches: [develop, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: install yarn
+        run: npm install -g yarn
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn build
+      - run: yarn test

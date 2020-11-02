@@ -1,58 +1,39 @@
 {
-  "name": "brickwall",
+  "name": "@csh/brickwall",
   "version": "1.0.0",
   "description": "CSH's website for job finding purposes.",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "generate": "prisma generate",
-    "migrate": "prisma migrate save --experimental && prisma migrate up --experimental",
-    "prod": "prisma generate && ts-node src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src/**/*.ts"
+    "start": "concurrently \"yarn workspace @csh/brickwall-server start\" \"yarn workspace @csh/brickwall-client start\"",
+    "generate": "yarn workspace @csh/brickwall-server generate",
+    "migrate": "yarn workspace @csh/brickwall-server migrate",
+    "build": "yarn workspace @csh/brickwall-client build",
+    "test": "yarn workspace @csh/brickwall-client test",
+    "prod:build": "yarn workspace @csh/brickwall-client build && yarn workspace @csh/brickwall-server prod",
+    "prod": "yarn workspace @csh/brickwall-server prod",
+    "lint": "yarn workspace @csh/brickwall-server lint && yarn workspace @csh/brickwall-client lint"
   },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ComputerScienceHouse/BrickWall.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Computer Science House",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ComputerScienceHouse/BrickWall/issues"
   },
   "homepage": "https://github.com/ComputerScienceHouse/BrickWall#readme",
   "devDependencies": {
-    "@prisma/cli": "^2.9.0",
-    "@types/cors": "^2.8.8",
-    "@types/express": "^4.17.8",
-    "@types/multer": "^1.4.4",
-    "@types/multer-s3": "^2.7.8",
-    "@types/node": "^14.14.5",
-    "@typescript-eslint/eslint-plugin": "^4.6.0",
-    "@typescript-eslint/parser": "^4.6.0",
-    "eslint": "^7.12.0",
-    "eslint-config-prettier": "^6.14.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-promise": "^4.2.1",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.12.1",
     "prettier": "^2.1.2",
-    "ts-node": "^9.0.0",
     "typescript": "^4.0.5"
-  },
-  "dependencies": {
-    "@prisma/client": "^2.9.0",
-    "aws-sdk": "^2.779.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "multer": "^1.4.2",
-    "multer-s3": "^2.9.0"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "semi": true,
-    "trailingComma": "all"
   },
   "engines": {
     "node": ">=14.14.0"

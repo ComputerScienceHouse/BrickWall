@@ -6,3 +6,8 @@ README.md
 CODEOWNERS
 .nvmrc
 .gitignore
+.github
+client/build
+client/node_modules
+server/node_modules
+Dockerfile
