@@ -1,11 +1,11 @@
 import { Button, Col, Row } from 'reactstrap';
 
-import { CompanyCard } from '../../CompanyCard';
-import { CreateCompanyModal } from '../../CreateCompanyModal';
-import InfoSpinner from '../../InfoSpinner';
-import { MenuBar } from '../../MenuBar';
+import { CompanyCard } from '@csh/ui/components/CompanyCard';
+import { CreateCompanyModal } from '@csh/ui/components/CreateCompanyModal';
+import InfoSpinner from '@csh/ui/components/InfoSpinner';
+import { MenuBar } from '@csh/ui/components/MenuBar';
 import React from 'react';
-import { ViewSelector } from '../../ViewSelector';
+import { ViewSelector } from '@csh/ui/components/ViewSelector';
 import { useCompanies } from '@csh/ui/api/company';
 import useToggle from 'react-use/lib/useToggle';
 

@@ -15,7 +15,7 @@ import { faMapMarkerAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { Company } from '@csh/ui/api/types/company';
 import { CompanyNav } from '../CompanyNav';
-import { CreateInterviewModal } from '../CreateInterviewModal';
+import { CreateInterviewModal } from '@csh/ui/components/InterviewModal/CreateInterviewModal';
 import { CreateOfferModal } from '../OfferModal/CreateOfferModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { JobType } from '@csh/ui/api/types/position';
