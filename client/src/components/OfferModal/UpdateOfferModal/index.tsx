@@ -86,9 +86,10 @@ export const UpdateOfferModal: React.FunctionComponent<UpdateOfferModalProps> = 
   const [offerLocationState, setOfferLocationState] = React.useState<string>(
     offer.location?.state ?? 'NY'
   );
-  const [offerLocationCountry, setOfferLocationCountry] = React.useState<
-    string
-  >(offer.location?.country ?? 'United States');
+  const [
+    offerLocationCountry,
+    setOfferLocationCountry
+  ] = React.useState<string>(offer.location?.country ?? 'United States');
 
   const { oidcUser } = useReactOidc();
   useUpdateOffer(offer.id, updateOffer);

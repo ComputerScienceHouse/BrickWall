@@ -64,9 +64,10 @@ export const CreateOfferModal: React.FunctionComponent<CreateOfferModalProps> = 
   const [offerLocationState, setOfferLocationState] = React.useState<string>(
     'NY'
   );
-  const [offerLocationCountry, setOfferLocationCountry] = React.useState<
-    string
-  >('United States');
+  const [
+    offerLocationCountry,
+    setOfferLocationCountry
+  ] = React.useState<string>('United States');
 
   const { oidcUser } = useReactOidc();
   useCreateOffer(newOffer);

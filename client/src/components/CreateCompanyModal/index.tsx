@@ -29,18 +29,20 @@ export const CreateCompanyModal: React.FunctionComponent<CreateCompanyModalProps
 
   const [companyName, setCompanyName] = React.useState<string>('');
   const [companyWebsite, setCompanyWebsite] = React.useState<string>('');
-  const [companyHeadquartersId, setCompanyHeadquartersId] = React.useState<
-    number
-  >();
+  const [
+    companyHeadquartersId,
+    setCompanyHeadquartersId
+  ] = React.useState<number>();
   const [createCompanyCity, setCreateCompanyCity] = React.useState<string>(
     'Rochester'
   );
   const [createCompanyState, setCreateCompanyState] = React.useState<string>(
     'NY'
   );
-  const [createCompanyCountry, setCreateCompanyCountry] = React.useState<
-    string
-  >('United States');
+  const [
+    createCompanyCountry,
+    setCreateCompanyCountry
+  ] = React.useState<string>('United States');
 
   const createNewCompany = () => {
     if (companyName !== '' && companyWebsite !== '') {
