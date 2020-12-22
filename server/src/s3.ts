@@ -12,6 +12,7 @@ export const s3 = new S3({
 
 export const uploadS3 = multer({
   storage: multerS3({
+    // @ts-ignore
     s3: s3,
     acl: 'public-read',
     bucket: 'brickwall',

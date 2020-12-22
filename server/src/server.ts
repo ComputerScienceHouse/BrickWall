@@ -1,12 +1,14 @@
-import company from './routes/company';
-import offer from './routes/offer';
-import interview from './routes/interview';
-import city from './routes/city';
-import position from './routes/position';
-import express, { Router } from 'express';
 import * as bodyParser from 'body-parser';
+
+import express, { Router } from 'express';
+
+import city from './routes/city';
+import company from './routes/company';
 import cors from 'cors';
+import interview from './routes/interview';
+import offer from './routes/offer';
 import path from 'path';
+import position from './routes/position';
 
 const app = express();
 
