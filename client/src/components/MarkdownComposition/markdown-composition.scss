@@ -1,0 +1,22 @@
+.markdown-display {
+	display: inline-block;
+	width: 50%;
+	height: inherit;
+	border: 1px solid;
+	padding: 4px;
+}
+
+.markdown-input {
+	width: 50%;
+	height: 400px;
+	display: inline;
+}
+
+.markdown {
+	display: flex;
+	align-content: space-around;
+}
+
+.markdown-flex {
+	margin: 5px;
+}
